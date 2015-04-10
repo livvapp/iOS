@@ -65,8 +65,8 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
         self.addSubview(usernameCreate)
         
         usernameLabel = UILabel(frame: CGRectMake(5, 0, self.frame.size.width-10, 40))
-        usernameLabel.text = "Create a Username"
-        usernameLabel.font = UIFont(name: "HelveticaNeue-Bold",
+        usernameLabel.text = "Enter Your Name"
+        usernameLabel.font = UIFont(name: "HelveticaNeue-Light",
             size: 22.0)
         usernameLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(usernameLabel)
@@ -101,7 +101,7 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
     
     func openWindow(renderView: MapViewController){
         
-        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.frame =  CGRectMake(50, (renderView.view.frame.height - 216)/2 - 85, renderView.view.frame.size.width - 100, 170)
             
@@ -189,7 +189,7 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
                 
             }else {
                 
-                self.usernameLabel.text = "Username Taken"
+                self.usernameLabel.text = "Oops! Try Again!"
                 self.usernameLabel.textColor = UIColor.redColor()
                 
             }

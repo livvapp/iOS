@@ -70,8 +70,6 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         
         lastLocation = CLLocation(latitude: 45, longitude: -45)
         
-        
-        
         //var attributionLabel: UILabel = mapView.subviews.
         
         // INITILIZE LOCATION MANAGER
@@ -118,14 +116,51 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         //button.hidden = true
         //searchBar.hidden = true
         
+        
+        
         button.addTarget(self, action: Selector("clickOnButton:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.navigationItem.titleView = button
+        
+        var bg: UIView! = UIView(frame: self.view.frame)
+        bg.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
+        
+        self.view.addSubview(bg)
+        
+        var image: UIImage! = UIImage(named: "ilovevista.png")
+        var imageView: UIImageView! = UIImageView(image: image)
+        //imageView.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
+        imageView.frame = CGRectMake(50, 0, self.view.frame.width - 100, self.view.frame.height)
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        bg.addSubview(imageView)
+        
+        delay(1.0){
+            //bg.removeFromSuperview()
+            println("completed")
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                
+                bg.alpha = 0.0
+                
+                }, completion: ({ success in
+                    
+                    bg.removeFromSuperview()
+                    
+                }))
+        }
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             self.getContactNames()
         }
         
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
     
     func clickOnButton(sender: UIButton!)
@@ -809,12 +844,29 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                         var createView: CreateUsernameView! = CreateUsernameView(frame: CGRectMake(50, -170, self.view.frame.size.width-100, 170))
                         self.view.addSubview(createView)
                         createView.openWindow(self)
+                        createView.usernameTextField.becomeFirstResponder()
+                        self.mapView.showsUserLocation = false
                         
                     } else {
                         
                         self.tableView = TagSelectorView(frame: CGRectMake(0, 72, self.view.frame.width, self.view.frame.height - 72), mapClass: self)
+                        
+                        self.tableView.alpha = 0.0
                         self.view.addSubview(self.tableView)
                         self.mapView.showsUserLocation = false
+                        UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                            
+                            self.tableView.alpha = 1.0
+                            
+                            }, completion: ({ success in
+                                
+                                
+                                
+                            }))
+                        
+                        
+                        
+                        
                         
                     }
                 }
@@ -1016,13 +1068,13 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                                 
                                 //println(skinnyPhone)
                                 
-                                if Contacts.objectsWhere("phone = '\(skinnyPhone)'").count < 1 {
+                                if (Contacts.objectsWhere("phone = '\(skinnyPhone)'").count < 1 &&  (ABRecordCopyCompositeName(person).takeRetainedValue() as? String != nil)){
                                     
-                                    //println("In the instance \(skinnyPhone)")
+                                    println(ABRecordCopyCompositeName(person).takeRetainedValue() as? String)
                                     let contact = Contacts()
                                     let realm = RLMRealm.defaultRealm()
                                     realm.beginWriteTransaction()
-                                    contact.name = ABRecordCopyCompositeName(person).takeRetainedValue() as! String
+                                    contact.name = ABRecordCopyCompositeName(person).takeRetainedValue() as String
                                     contact.phone = skinnyPhone
                                     realm.addObject(contact)
                                     realm.commitWriteTransaction()

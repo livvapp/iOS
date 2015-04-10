@@ -6,24 +6,40 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>5983979A-7C66-4F7F-BF02-076F57419F60</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Livv</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>30828331ACB832B8A0E3C9B51618A147FBD2C8F1</key>
+		<string>github.com:brentkirkland/Livv.git</string>
 		<key>9C2D01DAAF1C8A6D9DC7D712F8AC2A5AD59D0B4D</key>
 		<string>github.com:brentkirkland/Pleeb-iOS.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Livv.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>30828331ACB832B8A0E3C9B51618A147FBD2C8F1</key>
+		<string>..</string>
 		<key>9C2D01DAAF1C8A6D9DC7D712F8AC2A5AD59D0B4D</key>
-		<string>Pleeb/</string>
+		<string>../../../PLEEBVERSIONONE/Pleeb</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:brentkirkland/Pleeb-iOS.git</string>
+	<string>github.com:brentkirkland/Livv.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9C2D01DAAF1C8A6D9DC7D712F8AC2A5AD59D0B4D</string>
+	<string>30828331ACB832B8A0E3C9B51618A147FBD2C8F1</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>30828331ACB832B8A0E3C9B51618A147FBD2C8F1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Livv</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

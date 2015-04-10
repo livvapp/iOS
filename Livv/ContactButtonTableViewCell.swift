@@ -48,9 +48,9 @@ class ContactButtonTableViewCell: TagButtonViewCell {
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 22)
         button.sizeToFit()
         button.layer.cornerRadius = 2
-        var titleWidth: CGFloat! = (button.titleLabel?.frame.width as CGFloat!) + 10
-        var titleHeight: CGFloat! = (button.titleLabel?.frame.size.height as CGFloat!) + 5
-        button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: titleHeight)
+        var titleWidth: CGFloat! = (button.frame.size.width as CGFloat!) + 10
+        //var titleHeight: CGFloat! = (button.titleLabel?.frame.size.height as CGFloat!) + 5
+        button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)
         contentView.addSubview(button)
         
         count.frame = CGRect(x: self.frame.width + 15, y: 0, width: 30, height: contentView.frame.height)

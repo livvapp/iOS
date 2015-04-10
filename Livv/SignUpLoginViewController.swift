@@ -687,7 +687,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 }else {
                     
                     self.error.hidden = false
-                    self.error.text = "Oops! This phone doesn't exist"
+                    self.error.text = "Oops! Wrong code!"
                 }
                 
             }
@@ -1071,7 +1071,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 (user[0] as! User).complete = true
                 realm.commitWriteTransaction()
                 NSUserDefaults.standardUserDefaults().setObject("0", forKey: "step")
-                LoginOrDrawerController(frame: self.window.frame).setLog(self.window)
+                LoginOrDrawerController(frame: self.window.frame).root(self.window)
                 
             }else {
                 

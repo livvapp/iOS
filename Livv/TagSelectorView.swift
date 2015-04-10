@@ -41,13 +41,11 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
     
     var tableView: UITableView!
     
-    var explanation: UIView!
-    var pioneer: UILabel!
-    
     //array for multiple tags
     var searchedTags: [Tags] = []
     var tags: [Tags] = []
     var selectedTags: [String] = []
+    var instructions: [String] = [" Sup Brahhhh?!", " Set the trend by adding tags", " Top tag = event name", " Use @ to invite freinds", " Use # to create private tags", " Only invites see private tags", " Points are limited", " Send invites = more points", " Attend invites = more points", " Upvote correct tags = more points", " Be awesome = more points"]
     
     //mapcontroller
     var mapClass: MapViewController!
@@ -97,6 +95,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         self.fitToSize()
         addTag.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
         addTag.keyboardType = .Twitter
+        addTag.autocorrectionType = .No
         addTag.delegate = self
         addTag.layer.cornerRadius = 2
         
@@ -135,22 +134,23 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         tableView.delegate = self
         self.addSubview(tableView)
         
-        explanation = UIView(frame: CGRectMake(10, 41, self.frame.size.width-20, self.frame.size.height - 91))
-        explanation.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 0.9)
-        explanation.layer.cornerRadius = 2
-        explanation.hidden = true
-        self.addSubview(explanation)
-        
-        pioneer = UILabel(frame: CGRectMake(10, 10, explanation.frame.size.width-20, explanation.frame.size.height - 20))
-        pioneer.backgroundColor = UIColor.clearColor()
-        pioneer.font = UIFont(name: "HelveticaNeue-Light", size: 22)
-        pioneer.numberOfLines = 20
-        pioneer.textAlignment = .Left
-        pioneer.text = "You're first!\n\nSet the event trend by adding tags. The most popular tag will become the event name.\n\nUse @ to invite friends.\n\nUse # to create a private tag. Private tags are only shared with invites.\n\nTag wisely as you have limited points. Inviting friends, attending invites, and voting on correct tags will increase your point total."
-        pioneer.sizeToFit()
-        pioneer.textColor = UIColor.whiteColor()
-        pioneer.layer.cornerRadius = 2
-        explanation.addSubview(pioneer)
+//        explanation = UIView(frame: CGRectMake(10, 41, self.frame.size.width-20, self.frame.size.height - 91))
+//        explanation.backgroundColor = UIColor.clearColor()
+//        explanation.layer.cornerRadius = 2
+//        explanation.hidden = false
+//        self.addSubview(explanation)
+//        
+//        pioneer = UILabel(frame: CGRectMake(0, 0, explanation.frame.size.width, explanation.frame.size.height - 20))
+//        pioneer.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 0.9)
+//        pioneer.font = UIFont(name: "HelveticaNeue-Light", size: 22)
+//        pioneer.numberOfLines = 1
+//        pioneer.textAlignment = .Left
+////        pioneer.text = "You're the first one!\nSet the trend by adding tags.\nThe trending tag becomes the event name.\nUse @ to invite friends.\nUse # to create private tags. Private tags are only shared with invites.\nTag wisely as you have limited points. Inviting friends, attending invites, and voting on correct tags will increase your point total."
+//        //pioneer.text = "You're the first one!"
+//        pioneer.sizeToFit()
+//        pioneer.textColor = UIColor.whiteColor()
+//        pioneer.layer.cornerRadius = 2
+//        explanation.addSubview(pioneer)
         
         var singletap: UITapGestureRecognizer  = UITapGestureRecognizer(target: self, action: "singleTap:")
         singletap.numberOfTapsRequired = 1
@@ -213,172 +213,218 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         
         delay(2.0){
             
-            if self.selectedTags.count == 0 {
-                self.done.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                self.done.backgroundColor = UIColor(red: 26/255, green: 26/355, blue: 26/255, alpha: 0.9)
-                self.done.setTitle("Cancel", forState: UIControlState.Normal)
-                self.fitToSizeDone()
-            } else {
-                self.done.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                self.done.backgroundColor = UIColor(red: 26/255, green: 26/355, blue: 26/255, alpha: 0.9)
-                self.done.setTitle("Submit", forState: UIControlState.Normal)
-                self.fitToSizeDone()
+            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 
-            }
+                self.done.alpha = 0
+                
+                }, completion: ({ success in
+                    
+                    println("Window did disolve")
+                    
+                    if self.selectedTags.count == 0 {
+                        self.done.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                        self.done.backgroundColor = UIColor(red: 26/255, green: 26/355, blue: 26/255, alpha: 0.9)
+                        self.done.setTitle("Cancel", forState: UIControlState.Normal)
+                        self.fitToSizeDone()
+                    } else {
+                        self.done.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                        self.done.backgroundColor = UIColor(red: 26/255, green: 26/355, blue: 26/255, alpha: 0.9)
+                        self.done.setTitle("Submit", forState: UIControlState.Normal)
+                        self.fitToSizeDone()
+                        
+                    }
+
+                    
+                    UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                        
+                        self.done.alpha = 1.0
+                        
+                        }, completion: ({ success in
+                            
+                            println("Window did appear")
+                            //self.usernameTextField.becomeFirstResponder()
+                            
+                        }))
+                    
+                }))
+        
         }
         
     }
     func textFieldDidBeginEditing(textField: UITextField) {
-        explanation.hidden = true
+        //explanation.hidden = true
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //println("tags count is: \(tags.count)")
-        //println("searchedTags count is: \(searchedTags.count)")
+        println((tags.count + searchedTags.count))
+        if (tags.count + searchedTags.count) == 0 {
+            println(instructions.count)
+            return instructions.count
+        }
         return tags.count + searchedTags.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
-        //searchedtags / addedtags
-        if searchedTags.count > indexPath.row {
-            
-            //if it's a contact -> yellow dude
-            if searchedTags[indexPath.row].isContact == true && searchedTags[indexPath.row].isPrivate == false {
+        if (tags.count + searchedTags.count) != 0 {
+            //searchedtags / addedtags
+            if searchedTags.count > indexPath.row {
                 
-                let cellID = searchedTags[indexPath.row].title
-                var cell:ContactButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? ContactButtonTableViewCell
-                
-                if (cell == nil) {
+                //if it's a contact -> yellow dude
+                if searchedTags[indexPath.row].isContact == true && searchedTags[indexPath.row].isPrivate == false {
                     
-                    cell = ContactButtonTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: searchedTags[indexPath.row])
+                    let cellID = searchedTags[indexPath.row].title
+                    var cell:ContactButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? ContactButtonTableViewCell
                     
-                    cell.backgroundColor = UIColor.clearColor()
+                    if (cell == nil) {
+                        
+                        cell = ContactButtonTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: searchedTags[indexPath.row])
+                        
+                        cell.backgroundColor = UIColor.clearColor()
+                        
+                        cell.selectionStyle = .None
+                        cell.backgroundView = nil
+                        cell.contentView.backgroundColor = UIColor.clearColor()
+                        
+                    }
                     
-                    cell.selectionStyle = .None
-                    cell.backgroundView = nil
-                    cell.contentView.backgroundColor = UIColor.clearColor()
+                    return cell
+                }
+                    
+                    //if it's a private tag -> pink dude
+                else if searchedTags[indexPath.row].isContact == false && searchedTags[indexPath.row].isPrivate == true {
+                    
+                    let cellID = searchedTags[indexPath.row].title
+                    var cell:PrivateButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? PrivateButtonTableViewCell
+                    
+                    if (cell == nil) {
+                        
+                        cell = PrivateButtonTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: searchedTags[indexPath.row])
+                        
+                        cell.backgroundColor = UIColor.clearColor()
+                        
+                        cell.selectionStyle = .None
+                        cell.backgroundView = nil
+                        cell.contentView.backgroundColor = UIColor.clearColor()
+                        
+                    }
+                    
+                    return cell
+                    
+                }
+                    // if it's a normal tag -> cyan dude
+                else{
+                    
+                    //println("cyan dude")
+                    
+                    let cellID = searchedTags[indexPath.row].title
+                    var cell:TagButtonViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? TagButtonViewCell
+                    
+                    if (cell == nil) {
+                        
+                        cell = TagButtonViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: searchedTags[indexPath.row])
+                        
+                        cell.backgroundColor = UIColor.clearColor()
+                        //println("cyan dudee")
+                        cell.selectionStyle = .None
+                        cell.backgroundView = nil
+                        cell.contentView.backgroundColor = UIColor.clearColor()
+                        
+                    }
+                    
+                    return cell
                     
                 }
                 
-                return cell
-            }
+                // when a tag has been added and unadded it goes here
+            } else {
                 
-                //if it's a private tag -> pink dude
-            else if searchedTags[indexPath.row].isContact == false && searchedTags[indexPath.row].isPrivate == true {
-                
-                let cellID = searchedTags[indexPath.row].title
-                var cell:PrivateButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? PrivateButtonTableViewCell
-                
-                if (cell == nil) {
+                //if it's a contact -> yellow dude
+                if tags[indexPath.row - searchedTags.count].isContact == true && tags[indexPath.row - searchedTags.count].isPrivate == false {
                     
-                    cell = PrivateButtonTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: searchedTags[indexPath.row])
+                    let cellID = tags[indexPath.row - searchedTags.count].title
+                    var cell:ContactButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? ContactButtonTableViewCell
                     
-                    cell.backgroundColor = UIColor.clearColor()
-                    
-                    cell.selectionStyle = .None
-                    cell.backgroundView = nil
-                    cell.contentView.backgroundColor = UIColor.clearColor()
-                    
-                }
-                
-                return cell
-                
-            }
-                // if it's a normal tag -> cyan dude
-            else{
-                
-                //println("cyan dude")
-                
-                let cellID = searchedTags[indexPath.row].title
-                var cell:TagButtonViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? TagButtonViewCell
-                
-                if (cell == nil) {
-                    
-                    cell = TagButtonViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: searchedTags[indexPath.row])
-                    
-                    cell.backgroundColor = UIColor.clearColor()
-                    //println("cyan dudee")
-                    cell.selectionStyle = .None
-                    cell.backgroundView = nil
-                    cell.contentView.backgroundColor = UIColor.clearColor()
+                    if (cell == nil) {
+                        
+                        cell = ContactButtonTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: tags[indexPath.row - searchedTags.count])
+                        
+                        cell.backgroundColor = UIColor.clearColor()
+                        
+                        cell.selectionStyle = .None
+                        cell.backgroundView = nil
+                        cell.contentView.backgroundColor = UIColor.clearColor()
+                        
+                    }
+                    return cell
                     
                 }
-                
-                return cell
-                
+                    //if it's a private tag -> pink dude
+                else if (tags[indexPath.row - searchedTags.count].isContact == false && tags[indexPath.row - searchedTags.count].isPrivate == true) {
+                    
+                    //println("try it out3")
+                    //println(tags[indexPath.row - searchedTags.count].isContact)
+                    //println(tags[indexPath.row - searchedTags.count].isPrivate)
+                    //println(tags[indexPath.row - searchedTags.count].title)
+                    //println(tags[indexPath.row - searchedTags.count].phone)
+                    
+                    let cellID = tags[indexPath.row - searchedTags.count].title
+                    var cell:PrivateButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? PrivateButtonTableViewCell
+                    
+                    if (cell == nil) {
+                        
+                        cell = PrivateButtonTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: tags[indexPath.row - searchedTags.count])
+                        
+                        cell.backgroundColor = UIColor.clearColor()
+                        
+                        cell.selectionStyle = .None
+                        cell.backgroundView = nil
+                        cell.contentView.backgroundColor = UIColor.clearColor()
+                        
+                    }
+                    return cell
+                    
+                }
+                else{
+                    
+                    //println("try it out4")
+                    
+                    let cellID = tags[indexPath.row - searchedTags.count].title
+                    var cell:TagButtonViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? TagButtonViewCell
+                    
+                    if (cell == nil) {
+                        
+                        cell = TagButtonViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: tags[indexPath.row - searchedTags.count])
+                        
+                        cell.backgroundColor = UIColor.clearColor()
+                        
+                        cell.selectionStyle = .None
+                        cell.backgroundView = nil
+                        cell.contentView.backgroundColor = UIColor.clearColor()
+                        
+                    }
+                    return cell
+                }
             }
-            
-            // when a tag has been added and unadded it goes here
         } else {
             
-            //if it's a contact -> yellow dude
-            if tags[indexPath.row - searchedTags.count].isContact == true && tags[indexPath.row - searchedTags.count].isPrivate == false {
+            let cellID = instructions[indexPath.row]
+            var cell:InstructionsTableCellView! = tableView.dequeueReusableCellWithIdentifier(cellID) as? InstructionsTableCellView
+            
+            if (cell == nil) {
                 
-                let cellID = tags[indexPath.row - searchedTags.count].title
-                var cell:ContactButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? ContactButtonTableViewCell
+                cell = InstructionsTableCellView(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, title: instructions[indexPath.row])
                 
-                if (cell == nil) {
-                    
-                    cell = ContactButtonTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: tags[indexPath.row - searchedTags.count])
-                    
-                    cell.backgroundColor = UIColor.clearColor()
-                    
-                    cell.selectionStyle = .None
-                    cell.backgroundView = nil
-                    cell.contentView.backgroundColor = UIColor.clearColor()
-                    
-                }
-                return cell
+                cell.backgroundColor = UIColor.clearColor()
+                
+                cell.selectionStyle = .None
+                cell.backgroundView = nil
+                cell.contentView.backgroundColor = UIColor.clearColor()
                 
             }
-                //if it's a private tag -> pink dude
-            else if (tags[indexPath.row - searchedTags.count].isContact == false && tags[indexPath.row - searchedTags.count].isPrivate == true) {
-                
-                //println("try it out3")
-                //println(tags[indexPath.row - searchedTags.count].isContact)
-                //println(tags[indexPath.row - searchedTags.count].isPrivate)
-                //println(tags[indexPath.row - searchedTags.count].title)
-                //println(tags[indexPath.row - searchedTags.count].phone)
-                
-                let cellID = tags[indexPath.row - searchedTags.count].title
-                var cell:PrivateButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? PrivateButtonTableViewCell
-                
-                if (cell == nil) {
-                    
-                    cell = PrivateButtonTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: tags[indexPath.row - searchedTags.count])
-                    
-                    cell.backgroundColor = UIColor.clearColor()
-                    
-                    cell.selectionStyle = .None
-                    cell.backgroundView = nil
-                    cell.contentView.backgroundColor = UIColor.clearColor()
-                    
-                }
-                return cell
-                
-            }
-            else{
-                
-                //println("try it out4")
-                
-                let cellID = tags[indexPath.row - searchedTags.count].title
-                var cell:TagButtonViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? TagButtonViewCell
-                
-                if (cell == nil) {
-                    
-                    cell = TagButtonViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: tags[indexPath.row - searchedTags.count])
-                    
-                    cell.backgroundColor = UIColor.clearColor()
-                    
-                    cell.selectionStyle = .None
-                    cell.backgroundView = nil
-                    cell.contentView.backgroundColor = UIColor.clearColor()
-                    
-                }
-                return cell
-            }
+            
+            return cell
+            
         }
         
     }
@@ -604,7 +650,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
             
         } else {
             
-            explanation.hidden = true
+            //explanation.hidden = false
             
             
             
@@ -659,12 +705,30 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                 self.mapClass.mapView.showsUserLocation = true
                 println("success")
                 
-                self.removeFromSuperview()
+                UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    
+                    self.alpha = 0.0
+                    
+                    }, completion: ({ success in
+                        
+                        self.removeFromSuperview()
+                        
+                    }))
+                
+                
                 
             }else {
                 
                 self.mapClass.mapView.showsUserLocation = true
-                self.removeFromSuperview()
+                UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    
+                    self.alpha = 0.0
+                    
+                    }, completion: ({ success in
+                        
+                        self.removeFromSuperview()
+                        
+                    }))
                 
                 var alert: UIAlertView = UIAlertView(title: "Network Error", message: "You seem to have a bad connection.", delegate: self, cancelButtonTitle: "Close")
                 //self.tableView.closeWindow(self.tableView)

@@ -21,6 +21,7 @@
 		C726F3BC1AD73F7A008664D6 /* SignUpLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F3BB1AD73F7A008664D6 /* SignUpLoginViewController.swift */; };
 		C726F3BE1AD73FF7008664D6 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F3BD1AD73FF7008664D6 /* RLMSupport.swift */; };
 		C726F3C01AD74024008664D6 /* LoginOrDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F3BF1AD74024008664D6 /* LoginOrDrawerController.swift */; };
+		C73C36701AD7A3A100200066 /* InstructionsTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C366F1AD7A3A100200066 /* InstructionsTableCellView.swift */; };
 		C772EF0A1AD74588004F1180 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF091AD74588004F1180 /* SettingsViewController.swift */; };
 		C772EF0C1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF0B1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift */; };
 		C772EF0E1AD747E1004F1180 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF0D1AD747E1004F1180 /* MapViewController.swift */; };
@@ -35,7 +36,6 @@
 		C7B62B7D1AD7780F00132E31 /* DrawerBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B62B791AD7780F00132E31 /* DrawerBarButtonItem.swift */; };
 		C7B62B7E1AD7780F00132E31 /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B62B7A1AD7780F00132E31 /* DrawerController.swift */; };
 		C7B62B7F1AD7780F00132E31 /* DrawerVisualState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B62B7B1AD7780F00132E31 /* DrawerVisualState.swift */; };
-		C7B62B811AD778B500132E31 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B62B801AD778B500132E31 /* MapKit.framework */; };
 		C7B62B981AD779E000132E31 /* location_button.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B961AD779E000132E31 /* location_button.png */; };
 		C7B62B991AD779E000132E31 /* location_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B971AD779E000132E31 /* location_button@2x.png */; };
 		C7B62B9C1AD779FE00132E31 /* ilovevista.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B9A1AD779FE00132E31 /* ilovevista.png */; };
@@ -84,6 +84,7 @@
 		C726F3BB1AD73F7A008664D6 /* SignUpLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpLoginViewController.swift; sourceTree = "<group>"; };
 		C726F3BD1AD73FF7008664D6 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMSupport.swift; path = "../../realm-cocoa/Swift/RLMSupport.swift"; sourceTree = "<group>"; };
 		C726F3BF1AD74024008664D6 /* LoginOrDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOrDrawerController.swift; sourceTree = "<group>"; };
+		C73C366F1AD7A3A100200066 /* InstructionsTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsTableCellView.swift; sourceTree = "<group>"; };
 		C772EF091AD74588004F1180 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C772EF0B1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideDrawerSectionHeaderView.swift; sourceTree = "<group>"; };
 		C772EF0D1AD747E1004F1180 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		C7B62B791AD7780F00132E31 /* DrawerBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawerBarButtonItem.swift; path = ../../DrawerController/DrawerController/DrawerBarButtonItem.swift; sourceTree = "<group>"; };
 		C7B62B7A1AD7780F00132E31 /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawerController.swift; path = ../../DrawerController/DrawerController/DrawerController.swift; sourceTree = "<group>"; };
 		C7B62B7B1AD7780F00132E31 /* DrawerVisualState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawerVisualState.swift; path = ../../DrawerController/DrawerController/DrawerVisualState.swift; sourceTree = "<group>"; };
-		C7B62B801AD778B500132E31 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C7B62B961AD779E000132E31 /* location_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location_button.png; path = "../../../PLEEBVERSIONONE/Pleeb/Pleeb/Support Images/location_button.png"; sourceTree = "<group>"; };
 		C7B62B971AD779E000132E31 /* location_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location_button@2x.png"; path = "../../../PLEEBVERSIONONE/Pleeb/Pleeb/Support Images/location_button@2x.png"; sourceTree = "<group>"; };
 		C7B62B9A1AD779FE00132E31 /* ilovevista.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ilovevista.png; path = "../../../PLEEBVERSIONONE/Pleeb/Pleeb/Support Images/ilovevista.png"; sourceTree = "<group>"; };
@@ -116,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7B62B811AD778B500132E31 /* MapKit.framework in Frameworks */,
 				974A4D8284D1BA096255FFA3 /* Pods_Livv.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,7 +133,6 @@
 		51A0C9D630091A094A1EAB1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C7B62B801AD778B500132E31 /* MapKit.framework */,
 				96BA437DFA476AC43F72A5A8 /* Pods_Livv.framework */,
 			);
 			name = Frameworks;
@@ -179,6 +177,7 @@
 				C7B62B7B1AD7780F00132E31 /* DrawerVisualState.swift */,
 				C726F3BD1AD73FF7008664D6 /* RLMSupport.swift */,
 				C726F38B1AD73A64008664D6 /* AppDelegate.swift */,
+				C73C366F1AD7A3A100200066 /* InstructionsTableCellView.swift */,
 				C726F3B91AD73EF5008664D6 /* Models.swift */,
 				C726F3BB1AD73F7A008664D6 /* SignUpLoginViewController.swift */,
 				C726F3BF1AD74024008664D6 /* LoginOrDrawerController.swift */,
@@ -317,7 +316,7 @@
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -451,6 +450,7 @@
 				C726F3BA1AD73EF5008664D6 /* Models.swift in Sources */,
 				C7B62B7C1AD7780F00132E31 /* AnimatedMenuButton.swift in Sources */,
 				C7B62B7E1AD7780F00132E31 /* DrawerController.swift in Sources */,
+				C73C36701AD7A3A100200066 /* InstructionsTableCellView.swift in Sources */,
 				C7B62B7D1AD7780F00132E31 /* DrawerBarButtonItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -52,7 +52,7 @@ class TagButtonViewCell: UITableViewCell {
         button.sizeToFit()
         button.layer.cornerRadius = 2
         var titleWidth: CGFloat! = (button.frame.size.width as CGFloat!) + 10
-        println(button.titleLabel?.frame.size.width)
+        //println(button.titleLabel?.frame.size.width)
         //var titleHeight: CGFloat! = (button.frame.size.height as CGFloat!)
         //println(titleHeight)
         button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)

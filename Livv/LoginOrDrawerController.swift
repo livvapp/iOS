@@ -39,6 +39,8 @@ public class LoginOrDrawerController: UIWindow {
         window.backgroundColor = UIColor.whiteColor()
         window.makeKeyAndVisible()
         
+        
+        
     }
     
     public func setLogin(window: UIWindow!){
