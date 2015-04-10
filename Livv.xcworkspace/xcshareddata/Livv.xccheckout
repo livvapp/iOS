@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5983979A-7C66-4F7F-BF02-076F57419F60</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9C2D01DAAF1C8A6D9DC7D712F8AC2A5AD59D0B4D</key>
+		<string>github.com:brentkirkland/Pleeb-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9C2D01DAAF1C8A6D9DC7D712F8AC2A5AD59D0B4D</key>
+		<string>Pleeb/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:brentkirkland/Pleeb-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9C2D01DAAF1C8A6D9DC7D712F8AC2A5AD59D0B4D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9C2D01DAAF1C8A6D9DC7D712F8AC2A5AD59D0B4D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Pleeb</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		974A4D8284D1BA096255FFA3 /* Pods_Livv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BA437DFA476AC43F72A5A8 /* Pods_Livv.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C726F38C1AD73A64008664D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F38B1AD73A64008664D6 /* AppDelegate.swift */; };
+		C726F38E1AD73A64008664D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F38D1AD73A64008664D6 /* ViewController.swift */; };
+		C726F3931AD73A64008664D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C726F3921AD73A64008664D6 /* Images.xcassets */; };
+		C726F3961AD73A64008664D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C726F3941AD73A64008664D6 /* LaunchScreen.xib */; };
+		C726F3A21AD73A64008664D6 /* LivvTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F3A11AD73A64008664D6 /* LivvTests.swift */; };
+		C726F3AE1AD73D65008664D6 /* TBQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C726F3AD1AD73D65008664D6 /* TBQuadTree.m */; };
+		C726F3B11AD73DB7008664D6 /* TBCoordinateQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C726F3B01AD73DB7008664D6 /* TBCoordinateQuadTree.m */; };
+		C726F3B41AD73DFC008664D6 /* TBClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C726F3B31AD73DFC008664D6 /* TBClusterAnnotation.m */; };
+		C726F3B71AD73E55008664D6 /* TBClusterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C726F3B61AD73E55008664D6 /* TBClusterAnnotationView.m */; };
+		C726F3BA1AD73EF5008664D6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F3B91AD73EF5008664D6 /* Models.swift */; };
+		C726F3BC1AD73F7A008664D6 /* SignUpLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F3BB1AD73F7A008664D6 /* SignUpLoginViewController.swift */; };
+		C726F3BE1AD73FF7008664D6 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F3BD1AD73FF7008664D6 /* RLMSupport.swift */; };
+		C726F3C01AD74024008664D6 /* LoginOrDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F3BF1AD74024008664D6 /* LoginOrDrawerController.swift */; };
+		C772EF0A1AD74588004F1180 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF091AD74588004F1180 /* SettingsViewController.swift */; };
+		C772EF0C1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF0B1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift */; };
+		C772EF0E1AD747E1004F1180 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF0D1AD747E1004F1180 /* MapViewController.swift */; };
+		C772EF101AD74983004F1180 /* TheListiewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF0F1AD74983004F1180 /* TheListiewController.swift */; };
+		C772EF121AD74AEE004F1180 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF111AD74AEE004F1180 /* TableViewCell.swift */; };
+		C772EF2C1AD74CDB004F1180 /* TagSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF2B1AD74CDB004F1180 /* TagSelectorView.swift */; };
+		C772EF2E1AD74D35004F1180 /* ContactButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF2D1AD74D35004F1180 /* ContactButtonTableViewCell.swift */; };
+		C772EF301AD74D8A004F1180 /* TagButtonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF2F1AD74D8A004F1180 /* TagButtonViewCell.swift */; };
+		C772EF321AD74DE2004F1180 /* PrivateButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF311AD74DE2004F1180 /* PrivateButtonTableViewCell.swift */; };
+		C772EF361AD74E7D004F1180 /* CreateUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF351AD74E7D004F1180 /* CreateUsernameView.swift */; };
+		C7B62B7C1AD7780F00132E31 /* AnimatedMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B62B781AD7780F00132E31 /* AnimatedMenuButton.swift */; };
+		C7B62B7D1AD7780F00132E31 /* DrawerBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B62B791AD7780F00132E31 /* DrawerBarButtonItem.swift */; };
+		C7B62B7E1AD7780F00132E31 /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B62B7A1AD7780F00132E31 /* DrawerController.swift */; };
+		C7B62B7F1AD7780F00132E31 /* DrawerVisualState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B62B7B1AD7780F00132E31 /* DrawerVisualState.swift */; };
+		C7B62B811AD778B500132E31 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B62B801AD778B500132E31 /* MapKit.framework */; };
+		C7B62B981AD779E000132E31 /* location_button.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B961AD779E000132E31 /* location_button.png */; };
+		C7B62B991AD779E000132E31 /* location_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B971AD779E000132E31 /* location_button@2x.png */; };
+		C7B62B9C1AD779FE00132E31 /* ilovevista.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B9A1AD779FE00132E31 /* ilovevista.png */; };
+		C7B62B9D1AD779FE00132E31 /* ilovevista@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B9B1AD779FE00132E31 /* ilovevista@2x.png */; };
+		C7B62BA01AD77A0800132E31 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B9E1AD77A0800132E31 /* right.png */; };
+		C7B62BA11AD77A0800132E31 /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62B9F1AD77A0800132E31 /* right@2x.png */; };
+		C7B62BA41AD77A1300132E31 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62BA21AD77A1300132E31 /* left.png */; };
+		C7B62BA51AD77A1300132E31 /* left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62BA31AD77A1300132E31 /* left@2x.png */; };
+		C7B62BA81AD77A2100132E31 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62BA61AD77A2100132E31 /* refresh.png */; };
+		C7B62BA91AD77A2100132E31 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B62BA71AD77A2100132E31 /* refresh@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C726F39C1AD73A64008664D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C726F37E1AD73A64008664D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C726F3851AD73A64008664D6;
+			remoteInfo = Livv;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4F138FCEA6F4F55ADD51EE7C /* Pods-Livv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livv.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Livv/Pods-Livv.debug.xcconfig"; sourceTree = "<group>"; };
+		6CAA55AD3D81B66DC01C244D /* Pods-Livv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livv.release.xcconfig"; path = "Pods/Target Support Files/Pods-Livv/Pods-Livv.release.xcconfig"; sourceTree = "<group>"; };
+		96BA437DFA476AC43F72A5A8 /* Pods_Livv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Livv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C726F3861AD73A64008664D6 /* Livv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livv.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C726F38A1AD73A64008664D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C726F38B1AD73A64008664D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C726F38D1AD73A64008664D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C726F3921AD73A64008664D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C726F3951AD73A64008664D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C726F39B1AD73A64008664D6 /* LivvTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivvTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C726F3A01AD73A64008664D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C726F3A11AD73A64008664D6 /* LivvTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivvTests.swift; sourceTree = "<group>"; };
+		C726F3AB1AD73D34008664D6 /* TBQuadTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBQuadTree.h; sourceTree = "<group>"; };
+		C726F3AC1AD73D65008664D6 /* Livv-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Livv-Bridging-Header.h"; sourceTree = "<group>"; };
+		C726F3AD1AD73D65008664D6 /* TBQuadTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBQuadTree.m; sourceTree = "<group>"; };
+		C726F3AF1AD73D91008664D6 /* TBCoordinateQuadTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBCoordinateQuadTree.h; sourceTree = "<group>"; };
+		C726F3B01AD73DB7008664D6 /* TBCoordinateQuadTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCoordinateQuadTree.m; sourceTree = "<group>"; };
+		C726F3B21AD73DE6008664D6 /* TBClusterAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBClusterAnnotation.h; sourceTree = "<group>"; };
+		C726F3B31AD73DFC008664D6 /* TBClusterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBClusterAnnotation.m; sourceTree = "<group>"; };
+		C726F3B51AD73E32008664D6 /* TBClusterAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBClusterAnnotationView.h; sourceTree = "<group>"; };
+		C726F3B61AD73E55008664D6 /* TBClusterAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBClusterAnnotationView.m; sourceTree = "<group>"; };
+		C726F3B91AD73EF5008664D6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		C726F3BB1AD73F7A008664D6 /* SignUpLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpLoginViewController.swift; sourceTree = "<group>"; };
+		C726F3BD1AD73FF7008664D6 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMSupport.swift; path = "../../realm-cocoa/Swift/RLMSupport.swift"; sourceTree = "<group>"; };
+		C726F3BF1AD74024008664D6 /* LoginOrDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOrDrawerController.swift; sourceTree = "<group>"; };
+		C772EF091AD74588004F1180 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C772EF0B1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideDrawerSectionHeaderView.swift; sourceTree = "<group>"; };
+		C772EF0D1AD747E1004F1180 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C772EF0F1AD74983004F1180 /* TheListiewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheListiewController.swift; sourceTree = "<group>"; };
+		C772EF111AD74AEE004F1180 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		C772EF2B1AD74CDB004F1180 /* TagSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSelectorView.swift; sourceTree = "<group>"; };
+		C772EF2D1AD74D35004F1180 /* ContactButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactButtonTableViewCell.swift; sourceTree = "<group>"; };
+		C772EF2F1AD74D8A004F1180 /* TagButtonViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButtonViewCell.swift; sourceTree = "<group>"; };
+		C772EF311AD74DE2004F1180 /* PrivateButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateButtonTableViewCell.swift; sourceTree = "<group>"; };
+		C772EF351AD74E7D004F1180 /* CreateUsernameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUsernameView.swift; sourceTree = "<group>"; };
+		C7B62B781AD7780F00132E31 /* AnimatedMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedMenuButton.swift; path = ../../DrawerController/DrawerController/AnimatedMenuButton.swift; sourceTree = "<group>"; };
+		C7B62B791AD7780F00132E31 /* DrawerBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawerBarButtonItem.swift; path = ../../DrawerController/DrawerController/DrawerBarButtonItem.swift; sourceTree = "<group>"; };
+		C7B62B7A1AD7780F00132E31 /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawerController.swift; path = ../../DrawerController/DrawerController/DrawerController.swift; sourceTree = "<group>"; };
+		C7B62B7B1AD7780F00132E31 /* DrawerVisualState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawerVisualState.swift; path = ../../DrawerController/DrawerController/DrawerVisualState.swift; sourceTree = "<group>"; };
+		C7B62B801AD778B500132E31 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C7B62B961AD779E000132E31 /* location_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location_button.png; path = "../../../PLEEBVERSIONONE/Pleeb/Pleeb/Support Images/location_button.png"; sourceTree = "<group>"; };
+		C7B62B971AD779E000132E31 /* location_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location_button@2x.png"; path = "../../../PLEEBVERSIONONE/Pleeb/Pleeb/Support Images/location_button@2x.png"; sourceTree = "<group>"; };
+		C7B62B9A1AD779FE00132E31 /* ilovevista.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ilovevista.png; path = "../../../PLEEBVERSIONONE/Pleeb/Pleeb/Support Images/ilovevista.png"; sourceTree = "<group>"; };
+		C7B62B9B1AD779FE00132E31 /* ilovevista@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ilovevista@2x.png"; path = "../../../PLEEBVERSIONONE/Pleeb/Pleeb/Support Images/ilovevista@2x.png"; sourceTree = "<group>"; };
+		C7B62B9E1AD77A0800132E31 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = ../../../right.png; sourceTree = "<group>"; };
+		C7B62B9F1AD77A0800132E31 /* right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "right@2x.png"; path = "../../../right@2x.png"; sourceTree = "<group>"; };
+		C7B62BA21AD77A1300132E31 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = ../../../left.png; sourceTree = "<group>"; };
+		C7B62BA31AD77A1300132E31 /* left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "left@2x.png"; path = "../../../left@2x.png"; sourceTree = "<group>"; };
+		C7B62BA61AD77A2100132E31 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = ../../../refresh.png; sourceTree = "<group>"; };
+		C7B62BA71AD77A2100132E31 /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "../../../refresh@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C726F3831AD73A64008664D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7B62B811AD778B500132E31 /* MapKit.framework in Frameworks */,
+				974A4D8284D1BA096255FFA3 /* Pods_Livv.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C726F3981AD73A64008664D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		51A0C9D630091A094A1EAB1D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7B62B801AD778B500132E31 /* MapKit.framework */,
+				96BA437DFA476AC43F72A5A8 /* Pods_Livv.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		709CF5E836C1C4041FAD385E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4F138FCEA6F4F55ADD51EE7C /* Pods-Livv.debug.xcconfig */,
+				6CAA55AD3D81B66DC01C244D /* Pods-Livv.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C726F37D1AD73A64008664D6 = {
+			isa = PBXGroup;
+			children = (
+				C726F3881AD73A64008664D6 /* Livv */,
+				C726F39E1AD73A64008664D6 /* LivvTests */,
+				C726F3871AD73A64008664D6 /* Products */,
+				709CF5E836C1C4041FAD385E /* Pods */,
+				51A0C9D630091A094A1EAB1D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C726F3871AD73A64008664D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C726F3861AD73A64008664D6 /* Livv.app */,
+				C726F39B1AD73A64008664D6 /* LivvTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C726F3881AD73A64008664D6 /* Livv */ = {
+			isa = PBXGroup;
+			children = (
+				C7B62BAA1AD77A2600132E31 /* Images */,
+				C7B62B781AD7780F00132E31 /* AnimatedMenuButton.swift */,
+				C7B62B791AD7780F00132E31 /* DrawerBarButtonItem.swift */,
+				C7B62B7A1AD7780F00132E31 /* DrawerController.swift */,
+				C7B62B7B1AD7780F00132E31 /* DrawerVisualState.swift */,
+				C726F3BD1AD73FF7008664D6 /* RLMSupport.swift */,
+				C726F38B1AD73A64008664D6 /* AppDelegate.swift */,
+				C726F3B91AD73EF5008664D6 /* Models.swift */,
+				C726F3BB1AD73F7A008664D6 /* SignUpLoginViewController.swift */,
+				C726F3BF1AD74024008664D6 /* LoginOrDrawerController.swift */,
+				C726F38D1AD73A64008664D6 /* ViewController.swift */,
+				C772EF0F1AD74983004F1180 /* TheListiewController.swift */,
+				C772EF091AD74588004F1180 /* SettingsViewController.swift */,
+				C772EF111AD74AEE004F1180 /* TableViewCell.swift */,
+				C772EF0B1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift */,
+				C772EF0D1AD747E1004F1180 /* MapViewController.swift */,
+				C772EF2B1AD74CDB004F1180 /* TagSelectorView.swift */,
+				C772EF311AD74DE2004F1180 /* PrivateButtonTableViewCell.swift */,
+				C772EF2D1AD74D35004F1180 /* ContactButtonTableViewCell.swift */,
+				C772EF2F1AD74D8A004F1180 /* TagButtonViewCell.swift */,
+				C772EF351AD74E7D004F1180 /* CreateUsernameView.swift */,
+				C726F3B81AD73EE6008664D6 /* QuadTree */,
+				C726F3921AD73A64008664D6 /* Images.xcassets */,
+				C726F3941AD73A64008664D6 /* LaunchScreen.xib */,
+				C726F3891AD73A64008664D6 /* Supporting Files */,
+				C726F3AC1AD73D65008664D6 /* Livv-Bridging-Header.h */,
+			);
+			path = Livv;
+			sourceTree = "<group>";
+		};
+		C726F3891AD73A64008664D6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C726F38A1AD73A64008664D6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C726F39E1AD73A64008664D6 /* LivvTests */ = {
+			isa = PBXGroup;
+			children = (
+				C726F3A11AD73A64008664D6 /* LivvTests.swift */,
+				C726F39F1AD73A64008664D6 /* Supporting Files */,
+			);
+			path = LivvTests;
+			sourceTree = "<group>";
+		};
+		C726F39F1AD73A64008664D6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C726F3A01AD73A64008664D6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C726F3B81AD73EE6008664D6 /* QuadTree */ = {
+			isa = PBXGroup;
+			children = (
+				C726F3AB1AD73D34008664D6 /* TBQuadTree.h */,
+				C726F3AD1AD73D65008664D6 /* TBQuadTree.m */,
+				C726F3AF1AD73D91008664D6 /* TBCoordinateQuadTree.h */,
+				C726F3B01AD73DB7008664D6 /* TBCoordinateQuadTree.m */,
+				C726F3B21AD73DE6008664D6 /* TBClusterAnnotation.h */,
+				C726F3B31AD73DFC008664D6 /* TBClusterAnnotation.m */,
+				C726F3B51AD73E32008664D6 /* TBClusterAnnotationView.h */,
+				C726F3B61AD73E55008664D6 /* TBClusterAnnotationView.m */,
+			);
+			name = QuadTree;
+			sourceTree = "<group>";
+		};
+		C7B62BAA1AD77A2600132E31 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C7B62BA61AD77A2100132E31 /* refresh.png */,
+				C7B62BA71AD77A2100132E31 /* refresh@2x.png */,
+				C7B62BA21AD77A1300132E31 /* left.png */,
+				C7B62BA31AD77A1300132E31 /* left@2x.png */,
+				C7B62B9E1AD77A0800132E31 /* right.png */,
+				C7B62B9F1AD77A0800132E31 /* right@2x.png */,
+				C7B62B9A1AD779FE00132E31 /* ilovevista.png */,
+				C7B62B9B1AD779FE00132E31 /* ilovevista@2x.png */,
+				C7B62B961AD779E000132E31 /* location_button.png */,
+				C7B62B971AD779E000132E31 /* location_button@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C726F3851AD73A64008664D6 /* Livv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C726F3A51AD73A64008664D6 /* Build configuration list for PBXNativeTarget "Livv" */;
+			buildPhases = (
+				A804B2DA5CA03D8F127B244C /* Check Pods Manifest.lock */,
+				C726F3821AD73A64008664D6 /* Sources */,
+				C726F3831AD73A64008664D6 /* Frameworks */,
+				C726F3841AD73A64008664D6 /* Resources */,
+				6FDAF577757DE9B2EF7A774D /* Embed Pods Frameworks */,
+				737A555AE4455D0ECAFB47CA /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Livv;
+			productName = Livv;
+			productReference = C726F3861AD73A64008664D6 /* Livv.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C726F39A1AD73A64008664D6 /* LivvTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C726F3A81AD73A64008664D6 /* Build configuration list for PBXNativeTarget "LivvTests" */;
+			buildPhases = (
+				C726F3971AD73A64008664D6 /* Sources */,
+				C726F3981AD73A64008664D6 /* Frameworks */,
+				C726F3991AD73A64008664D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C726F39D1AD73A64008664D6 /* PBXTargetDependency */,
+			);
+			name = LivvTests;
+			productName = LivvTests;
+			productReference = C726F39B1AD73A64008664D6 /* LivvTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C726F37E1AD73A64008664D6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Brent Kirkland";
+				TargetAttributes = {
+					C726F3851AD73A64008664D6 = {
+						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = BF98Z4WZZW;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					C726F39A1AD73A64008664D6 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = C726F3851AD73A64008664D6;
+					};
+				};
+			};
+			buildConfigurationList = C726F3811AD73A64008664D6 /* Build configuration list for PBXProject "Livv" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C726F37D1AD73A64008664D6;
+			productRefGroup = C726F3871AD73A64008664D6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C726F3851AD73A64008664D6 /* Livv */,
+				C726F39A1AD73A64008664D6 /* LivvTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C726F3841AD73A64008664D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7B62BA81AD77A2100132E31 /* refresh.png in Resources */,
+				C726F3961AD73A64008664D6 /* LaunchScreen.xib in Resources */,
+				C7B62B9C1AD779FE00132E31 /* ilovevista.png in Resources */,
+				C7B62BA41AD77A1300132E31 /* left.png in Resources */,
+				C7B62B9D1AD779FE00132E31 /* ilovevista@2x.png in Resources */,
+				C7B62B981AD779E000132E31 /* location_button.png in Resources */,
+				C726F3931AD73A64008664D6 /* Images.xcassets in Resources */,
+				C7B62B991AD779E000132E31 /* location_button@2x.png in Resources */,
+				C7B62BA51AD77A1300132E31 /* left@2x.png in Resources */,
+				C7B62BA01AD77A0800132E31 /* right.png in Resources */,
+				C7B62BA91AD77A2100132E31 /* refresh@2x.png in Resources */,
+				C7B62BA11AD77A0800132E31 /* right@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C726F3991AD73A64008664D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6FDAF577757DE9B2EF7A774D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Livv/Pods-Livv-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		737A555AE4455D0ECAFB47CA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Livv/Pods-Livv-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A804B2DA5CA03D8F127B244C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C726F3821AD73A64008664D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C772EF121AD74AEE004F1180 /* TableViewCell.swift in Sources */,
+				C726F3BC1AD73F7A008664D6 /* SignUpLoginViewController.swift in Sources */,
+				C726F3C01AD74024008664D6 /* LoginOrDrawerController.swift in Sources */,
+				C772EF301AD74D8A004F1180 /* TagButtonViewCell.swift in Sources */,
+				C772EF0A1AD74588004F1180 /* SettingsViewController.swift in Sources */,
+				C772EF101AD74983004F1180 /* TheListiewController.swift in Sources */,
+				C726F3BE1AD73FF7008664D6 /* RLMSupport.swift in Sources */,
+				C726F3AE1AD73D65008664D6 /* TBQuadTree.m in Sources */,
+				C726F38E1AD73A64008664D6 /* ViewController.swift in Sources */,
+				C772EF0E1AD747E1004F1180 /* MapViewController.swift in Sources */,
+				C726F3B71AD73E55008664D6 /* TBClusterAnnotationView.m in Sources */,
+				C772EF361AD74E7D004F1180 /* CreateUsernameView.swift in Sources */,
+				C7B62B7F1AD7780F00132E31 /* DrawerVisualState.swift in Sources */,
+				C726F3B11AD73DB7008664D6 /* TBCoordinateQuadTree.m in Sources */,
+				C772EF321AD74DE2004F1180 /* PrivateButtonTableViewCell.swift in Sources */,
+				C726F3B41AD73DFC008664D6 /* TBClusterAnnotation.m in Sources */,
+				C772EF0C1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift in Sources */,
+				C726F38C1AD73A64008664D6 /* AppDelegate.swift in Sources */,
+				C772EF2C1AD74CDB004F1180 /* TagSelectorView.swift in Sources */,
+				C772EF2E1AD74D35004F1180 /* ContactButtonTableViewCell.swift in Sources */,
+				C726F3BA1AD73EF5008664D6 /* Models.swift in Sources */,
+				C7B62B7C1AD7780F00132E31 /* AnimatedMenuButton.swift in Sources */,
+				C7B62B7E1AD7780F00132E31 /* DrawerController.swift in Sources */,
+				C7B62B7D1AD7780F00132E31 /* DrawerBarButtonItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C726F3971AD73A64008664D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C726F3A21AD73A64008664D6 /* LivvTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C726F39D1AD73A64008664D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C726F3851AD73A64008664D6 /* Livv */;
+			targetProxy = C726F39C1AD73A64008664D6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C726F3941AD73A64008664D6 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C726F3951AD73A64008664D6 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C726F3A31AD73A64008664D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C726F3A41AD73A64008664D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C726F3A61AD73A64008664D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F138FCEA6F4F55ADD51EE7C /* Pods-Livv.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Livv/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Livv/Livv-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C726F3A71AD73A64008664D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CAA55AD3D81B66DC01C244D /* Pods-Livv.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Livv/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Livv/Livv-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		C726F3A91AD73A64008664D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LivvTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Livv.app/Livv";
+			};
+			name = Debug;
+		};
+		C726F3AA1AD73A64008664D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LivvTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Livv.app/Livv";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C726F3811AD73A64008664D6 /* Build configuration list for PBXProject "Livv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C726F3A31AD73A64008664D6 /* Debug */,
+				C726F3A41AD73A64008664D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C726F3A51AD73A64008664D6 /* Build configuration list for PBXNativeTarget "Livv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C726F3A61AD73A64008664D6 /* Debug */,
+				C726F3A71AD73A64008664D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C726F3A81AD73A64008664D6 /* Build configuration list for PBXNativeTarget "LivvTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C726F3A91AD73A64008664D6 /* Debug */,
+				C726F3AA1AD73A64008664D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C726F37E1AD73A64008664D6 /* Project object */;
+}
