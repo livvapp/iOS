@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DrawerController
 
 public class LoginOrDrawerController: UIWindow {
     
@@ -59,6 +58,7 @@ public class LoginOrDrawerController: UIWindow {
         let leftSideDrawerViewController = SettingsViewController()
         let centerViewController = MapViewController()
         let rightSideDrawerViewController = TheListiewController()
+
         
         let navigationController = UINavigationController(rootViewController: centerViewController)
         navigationController.restorationIdentifier = "MapViewCenterControllerRestorationKey"
@@ -75,8 +75,8 @@ public class LoginOrDrawerController: UIWindow {
         
         self.drawerController.restorationIdentifier = "Drawer"
         
-        self.drawerController.maximumRightDrawerWidth = 375-150
-        self.drawerController.maximumLeftDrawerWidth = 375-150
+        self.drawerController.maximumRightDrawerWidth = window.frame.width
+        self.drawerController.maximumLeftDrawerWidth = window.frame.width
         self.drawerController.openDrawerGestureModeMask = .All
         self.drawerController.closeDrawerGestureModeMask = .All
         

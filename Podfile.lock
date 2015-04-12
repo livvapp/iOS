@@ -1,5 +1,45 @@
 PODS:
+  - AFNetworking (2.5.2):
+    - AFNetworking/NSURLConnection (= 2.5.2)
+    - AFNetworking/NSURLSession (= 2.5.2)
+    - AFNetworking/Reachability (= 2.5.2)
+    - AFNetworking/Security (= 2.5.2)
+    - AFNetworking/Serialization (= 2.5.2)
+    - AFNetworking/UIKit (= 2.5.2)
+  - AFNetworking/NSURLConnection (2.5.2):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.2):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.2)
+  - AFNetworking/Security (2.5.2)
+  - AFNetworking/Serialization (2.5.2)
+  - AFNetworking/UIKit (2.5.2):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - Alamofire (1.2.0)
+  - CocoaLumberjack (2.0.0):
+    - CocoaLumberjack/Default (= 2.0.0)
+    - CocoaLumberjack/Extensions (= 2.0.0)
+  - CocoaLumberjack/Core (2.0.0)
+  - CocoaLumberjack/Default (2.0.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.0.0):
+    - CocoaLumberjack/Default
+  - LogglyLogger-CocoaLumberjack (2.0.2):
+    - AFNetworking (~> 2.0)
+    - CocoaLumberjack (~> 2.0.0)
+    - LogglyLogger-CocoaLumberjack/Formatter (= 2.0.2)
+    - LogglyLogger-CocoaLumberjack/Logger (= 2.0.2)
+  - LogglyLogger-CocoaLumberjack/Formatter (2.0.2):
+    - AFNetworking (~> 2.0)
+    - CocoaLumberjack (~> 2.0.0)
+  - LogglyLogger-CocoaLumberjack/Logger (2.0.2):
+    - AFNetworking (~> 2.0)
+    - CocoaLumberjack (~> 2.0.0)
   - Realm (0.91.1):
     - Realm/Headers (= 0.91.1)
   - Realm/Headers (0.91.1)
@@ -7,11 +47,15 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
+  - LogglyLogger-CocoaLumberjack (~> 2.0)
   - Realm
   - SwiftyJSON (>= 2.1.3)
 
 SPEC CHECKSUMS:
+  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   Alamofire: d765c5c1713aa64106b0228aaa600a1e6851f68d
+  CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
+  LogglyLogger-CocoaLumberjack: 5893454a01f18016398c2637bdc457d63456d2ac
   Realm: b9c1fd9defa26aa7276ce938a8df52ec81f24528
   SwiftyJSON: a561c2a840121085bec8a2dfeac97a360fc66901
 

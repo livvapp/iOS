@@ -14,7 +14,6 @@ import Realm
 import QuartzCore
 import AddressBook
 import SwiftyJSON
-import DrawerController
 
 
 enum CenterViewControllerSection: Int {
@@ -24,7 +23,7 @@ enum CenterViewControllerSection: Int {
     case RightDrawerAnimation
 }
 
-class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate   {
+class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate  {
     
     var tableView: TagSelectorView!
     var mapView: MKMapView!
@@ -37,14 +36,14 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     var accuracy: CLLocationAccuracy!
     var lastLocation: CLLocation!
     
-    
     var intialLocationLoad = false
-    
     
     var adbk : ABAddressBookRef!
     
-    
     var userLocation:CLLocation!
+    
+    var showSplashScreen: Bool! = true
+    var inviteLocation: CLLocationCoordinate2D!
     
     //search bar
     //var searchBar: SearchBarView!
@@ -65,10 +64,11 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lastLocation = CLLocation(latitude: 45, longitude: -45)
+        //lastLocation = CLLocation(latitude: 45, longitude: -45)
         
         //var attributionLabel: UILabel = mapView.subviews.
         
@@ -121,31 +121,60 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         button.addTarget(self, action: Selector("clickOnButton:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.navigationItem.titleView = button
         
-        var bg: UIView! = UIView(frame: self.view.frame)
-        bg.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
         
-        self.view.addSubview(bg)
         
-        var image: UIImage! = UIImage(named: "ilovevista.png")
-        var imageView: UIImageView! = UIImageView(image: image)
-        //imageView.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
-        imageView.frame = CGRectMake(50, 0, self.view.frame.width - 100, self.view.frame.height)
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
-        bg.addSubview(imageView)
-        
-        delay(1.0){
-            //bg.removeFromSuperview()
-            println("completed")
-            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        if showSplashScreen == true {
+            var bg: UIView! = UIView(frame: self.view.frame)
+            bg.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
+            
+            self.view.addSubview(bg)
+            
+            var image: UIImage! = UIImage(named: "ilovevista.png")
+            var imageView: UIImageView! = UIImageView(image: image)
+            //imageView.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
+            imageView.frame = CGRectMake(50, 0, self.view.frame.width - 100, self.view.frame.height)
+            imageView.contentMode = UIViewContentMode.ScaleAspectFit
+            bg.addSubview(imageView)
+            
+            
+            delay(3.2){
+                //bg.removeFromSuperview()
+                println("completed")
                 
-                bg.alpha = 0.0
+                UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    
+                    bg.alpha = 0.0
+                    
+                    }, completion: ({ success in
+                        
+                        self.currentLocation()
+                        self.setUpVotes()
+                        bg.removeFromSuperview()
+                        
+                    }))
+            }
+        } else {
+            
+            delay(1.0){
                 
-                }, completion: ({ success in
+                if self.inviteLocation != nil {
+                
+                    let spanX = 0.002
+                    let spanY = 0.002
                     
-                    bg.removeFromSuperview()
+                    var newRegion = MKCoordinateRegion(center: self.inviteLocation, span: MKCoordinateSpanMake(spanX, spanY))
                     
-                }))
+                    self.mapView.setRegion(newRegion, animated: true)
+                }
+                self.setUpVotes()
+            }
         }
+        
+        var leftGrab:UIView! = UIView(frame: CGRectMake(0, 0, 20, self.view.frame.height))
+        var rightGrab:UIView! = UIView(frame: CGRectMake(self.view.frame.width-20, 0, 20, self.view.frame.height))
+
+        self.view.addSubview(leftGrab)
+        self.view.addSubview(rightGrab)
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
@@ -229,8 +258,9 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                 println("JSON Data: \(json)")
                 println("Error: \(error)")
                 
-                var alert: UIAlertView = UIAlertView(title: "Network Error", message: "You seem to have a bad connection.", delegate: self, cancelButtonTitle: "Close")
+                var error: String = "Error while setting up points! request: \(req), response: \(res), data: \(json), error: \(error),"
                 
+                DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
                 
                 let realm = RLMRealm.defaultRealm()
                 realm.beginWriteTransaction()
@@ -239,9 +269,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                 size.length = "0"
                 realm.addObject(size)
                 realm.commitWriteTransaction()
-                
-                alert.dismissWithClickedButtonIndex(0, animated: true)
-                alert.show()
+
                 
                 self.connection = false
                 
@@ -359,169 +387,169 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     }
     
     
-    func getSelectedTags(){
-        
-        let users = User.allObjects()
-        let user = users[UInt(0)] as! User
-        
-        let URL: NSURL! = NSURL(string:"\(globalURL)/api/posts/tags")
-        
-        let mutableURLRequest = NSMutableURLRequest(URL: URL!)
-        mutableURLRequest.HTTPMethod = "GET"
-        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
-        mutableURLRequest.setValue("\(self.address)", forHTTPHeaderField: "address")
-        var JSONSerializationError: NSError? = nil
-        
-        //call alamo
-        Alamofire.request(mutableURLRequest).responseJSON { (req, res, json, error) in
-            if(error != nil) {
-                NSLog("Error: \(error)")
-                println("Request: \(req)")
-                println("Response: \(res)")
-                println("JSON Data: \(json)")
-                println("Error: \(error)")
-                
-                
-                //self.tableView = TagSelectorTableView(mapClass: self)
-                self.mapView.showsUserLocation = false
-            }
-            else {
-                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                    
-                    NSLog("Error: \(error)")
-                    println("Request: \(req)")
-                    println("Response: \(res)")
-                    println("JSON Data: \(json)")
-                    println("Error: \(error)")
-                    
-                    println("selecting a tag")
-                    
-                    if json != nil {
-                        var myJSON = JSON(json!)
-                        if JSON(json!)["list"] != nil {
-                            println(myJSON["list"])
-                        }
-                        var eventt: RLMResults = Event.objectsWhere("address = %@", self.address)
-                        if ((Event.objectsWhere("address = %@", self.address).count != 0) &&  eventt[0] != nil ){
-                            //var eventt: RLMResults = Event.objectsWhere("address = %@", self.address)
-                            var event = eventt[0] as! Event
-                            
-                            for (index: String, subJson: JSON) in JSON(json!)["list"] {
-                                println("the key value is: \(subJson.stringValue)")
-                                
-                                for var i = 0; i < Int(event.tags.count); i++ {
-                                    
-                                    if event.tags[UInt(i)].name == subJson.stringValue{
-                                        
-                                        let realm = RLMRealm.defaultRealm()
-                                        realm.beginWriteTransaction()
-                                        var newTag = Tag()
-                                        newTag = event.tags[UInt(i)] as! Tag
-                                        newTag.userSelectedTag = 1
-                                        realm.commitWriteTransaction()
-                                        
-                                    }
-                                    
-                                }
-                                
-                                
-                            }
-                            
-                        }
-                        
-                        
-                    }
-                    
-                    //                    dispatch_async(dispatch_get_main_queue()) {
-                    //
-                    //
-                    //
-                    //                        //self.tableView = TagSelectorTableView(mapClass: self)
-                    //                        self.view.addSubview(TagSelectorView(frame: CGRectMake(0, 72, self.view.frame.width, self.view.frame.height - 72), mapClass: self))
-                    //                        self.mapView.showsUserLocation = false
-                    //
-                    //                    }
-                }
-            }
-        }
-    }
+//    func getSelectedTags(){
+//        
+//        let users = User.allObjects()
+//        let user = users[UInt(0)] as! User
+//        
+//        let URL: NSURL! = NSURL(string:"\(globalURL)/api/posts/tags")
+//        
+//        let mutableURLRequest = NSMutableURLRequest(URL: URL!)
+//        mutableURLRequest.HTTPMethod = "GET"
+//        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
+//        mutableURLRequest.setValue("\(self.address)", forHTTPHeaderField: "address")
+//        var JSONSerializationError: NSError? = nil
+//        
+//        //call alamo
+//        Alamofire.request(mutableURLRequest).responseJSON { (req, res, json, error) in
+//            if(error != nil) {
+//                NSLog("Error: \(error)")
+//                println("Request: \(req)")
+//                println("Response: \(res)")
+//                println("JSON Data: \(json)")
+//                println("Error: \(error)")
+//                
+//                
+//                //self.tableView = TagSelectorTableView(mapClass: self)
+//                self.mapView.showsUserLocation = false
+//            }
+//            else {
+//                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+//                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+//                    
+//                    NSLog("Error: \(error)")
+//                    println("Request: \(req)")
+//                    println("Response: \(res)")
+//                    println("JSON Data: \(json)")
+//                    println("Error: \(error)")
+//                    
+//                    println("selecting a tag")
+//                    
+//                    if json != nil {
+//                        var myJSON = JSON(json!)
+//                        if JSON(json!)["list"] != nil {
+//                            println(myJSON["list"])
+//                        }
+//                        var eventt: RLMResults = Event.objectsWhere("address = %@", self.address)
+//                        if ((Event.objectsWhere("address = %@", self.address).count != 0) &&  eventt[0] != nil ){
+//                            //var eventt: RLMResults = Event.objectsWhere("address = %@", self.address)
+//                            var event = eventt[0] as! Event
+//                            
+//                            for (index: String, subJson: JSON) in JSON(json!)["list"] {
+//                                println("the key value is: \(subJson.stringValue)")
+//                                
+//                                for var i = 0; i < Int(event.tags.count); i++ {
+//                                    
+//                                    if event.tags[UInt(i)].name == subJson.stringValue{
+//                                        
+//                                        let realm = RLMRealm.defaultRealm()
+//                                        realm.beginWriteTransaction()
+//                                        var newTag = Tag()
+//                                        newTag = event.tags[UInt(i)] as! Tag
+//                                        newTag.userSelectedTag = 1
+//                                        realm.commitWriteTransaction()
+//                                        
+//                                    }
+//                                    
+//                                }
+//                                
+//                                
+//                            }
+//                            
+//                        }
+//                        
+//                        
+//                    }
+//                    
+//                    //                    dispatch_async(dispatch_get_main_queue()) {
+//                    //
+//                    //
+//                    //
+//                    //                        //self.tableView = TagSelectorTableView(mapClass: self)
+//                    //                        self.view.addSubview(TagSelectorView(frame: CGRectMake(0, 72, self.view.frame.width, self.view.frame.height - 72), mapClass: self))
+//                    //                        self.mapView.showsUserLocation = false
+//                    //
+//                    //                    }
+//                }
+//            }
+//        }
+//    }
     
     
     
     
     
     //POST
-    
-    func post(tag: String!)->Void {
-        
-        let users = User.allObjects()
-        let user = users[UInt(0)] as! User
-        
-        
-        let parameters = [
-            "loc": [
-                "type": "Point",
-                "coordinates": [
-                    mapView.userLocation.coordinate.longitude,
-                    mapView.userLocation.coordinate.latitude
-                ]
-            ],
-            "accuracy": accuracy,
-            "address": address,
-            "tag": tag
-        ]
-        
-        let URL = NSURL(string: "\(globalURL)/api/posts")!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL)
-        mutableURLRequest.HTTPMethod = "POST"
-        
-        var JSONSerializationError: NSError? = nil
-        mutableURLRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: &JSONSerializationError)
-        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
-        
-        print(parameters)
-        
-        Alamofire.request(mutableURLRequest).response {
-            
-            (request, response, data, error) -> Void in
-            
-            println("Requesttttt: \(request)")
-            println("Responseeeee: \(response)")
-            println("Dataaaa: \(data)")
-            println("Erroreeee: \(error)")
-            
-            if error == nil {
-                
-                let realm = RLMRealm.defaultRealm()
-                realm.beginWriteTransaction()
-                user.lastTag = tag
-                realm.commitWriteTransaction()
-                
-                println("the last tag was \(user.lastTag)")
-                
-                //self.tableView.closeWindow(self.tableView)
-                
-                self.setUpVotes()
-                
-                
-                
-            }else {
-                
-                var alert: UIAlertView = UIAlertView(title: "Network Error", message: "You seem to have a bad connection.", delegate: self, cancelButtonTitle: "Close")
-                //self.tableView.closeWindow(self.tableView)
-                alert.dismissWithClickedButtonIndex(0, animated: true)
-                alert.show()
-                
-                
-            }
-            
-        }
-        
-    }
-    
+//    
+//    func post(tag: String!)->Void {
+//        
+//        let users = User.allObjects()
+//        let user = users[UInt(0)] as! User
+//        
+//        
+//        let parameters = [
+//            "loc": [
+//                "type": "Point",
+//                "coordinates": [
+//                    mapView.userLocation.coordinate.longitude,
+//                    mapView.userLocation.coordinate.latitude
+//                ]
+//            ],
+//            "accuracy": accuracy,
+//            "address": address,
+//            "tag": tag
+//        ]
+//        
+//        let URL = NSURL(string: "\(globalURL)/api/posts")!
+//        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+//        mutableURLRequest.HTTPMethod = "POST"
+//        
+//        var JSONSerializationError: NSError? = nil
+//        mutableURLRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: &JSONSerializationError)
+//        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
+//        
+//        print(parameters)
+//        
+//        Alamofire.request(mutableURLRequest).response {
+//            
+//            (request, response, data, error) -> Void in
+//            
+//            println("Requesttttt: \(request)")
+//            println("Responseeeee: \(response)")
+//            println("Dataaaa: \(data)")
+//            println("Erroreeee: \(error)")
+//            
+//            if error == nil {
+//                
+//                let realm = RLMRealm.defaultRealm()
+//                realm.beginWriteTransaction()
+//                user.lastTag = tag
+//                realm.commitWriteTransaction()
+//                
+//                println("the last tag was \(user.lastTag)")
+//                
+//                //self.tableView.closeWindow(self.tableView)
+//                
+//                self.setUpVotes()
+//                
+//                
+//                
+//            }else {
+//                
+//                var alert: UIAlertView = UIAlertView(title: "Network Error", message: "You seem to have a bad connection.", delegate: self, cancelButtonTitle: "Close")
+//                //self.tableView.closeWindow(self.tableView)
+//                alert.dismissWithClickedButtonIndex(0, animated: true)
+//                alert.show()
+//                
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//    
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         
         if intialLocationLoad == false{
@@ -584,8 +612,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         println("Center will appear")
-        
-        setUpVotes()
+        //super.screenName = "MapView"
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -767,11 +794,11 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
-        if lastLocation.distanceFromLocation(locations[0] as! CLLocation) > 50 {
-            
-            println("we made it!")
-            
-        }
+//        if lastLocation.distanceFromLocation(locations[0] as! CLLocation) > 50 {
+//            
+//            println("we made it!")
+//            
+//        }
         
         userLocation = locations[0] as! CLLocation
         lastLocation = locations[0] as! CLLocation

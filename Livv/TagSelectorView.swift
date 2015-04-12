@@ -45,7 +45,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
     var searchedTags: [Tags] = []
     var tags: [Tags] = []
     var selectedTags: [String] = []
-    var instructions: [String] = [" Sup Brahhhh?!", " Set the trend by adding tags", " Top tag = event name", " Use @ to invite freinds", " Use # to create private tags", " Only invites see private tags", " Points are limited", " Send invites = more points", " Attend invites = more points", " Upvote correct tags = more points", " Be awesome = more points"]
+    var instructions: [String] = [" Hello, Hello!", " Set the trend by adding tags", " Top tag = event name", " Use @ to invite freinds", " Use # to create private tags", " Only invites see private tags", " Points are limited", " Send invites = more points", " Attend invites = more points", " Upvote correct tags = more points", " Be awesome = more points"]
     
     //mapcontroller
     var mapClass: MapViewController!
@@ -165,6 +165,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         
         //getSelectedTags()
         setUpExistingTags()
+
     }
     
     func decrementAPoint(){
@@ -711,6 +712,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                     
                     }, completion: ({ success in
                         
+        
                         self.removeFromSuperview()
                         
                     }))
@@ -729,6 +731,10 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                         self.removeFromSuperview()
                         
                     }))
+                
+                var error: String = "Error while posting tags! request: \(request), response: \(response), data: \(data), error: \(error),"
+                
+                DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
                 
                 var alert: UIAlertView = UIAlertView(title: "Network Error", message: "You seem to have a bad connection.", delegate: self, cancelButtonTitle: "Close")
                 //self.tableView.closeWindow(self.tableView)

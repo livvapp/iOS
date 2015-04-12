@@ -4,7 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-Livv-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Livv-Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Livv-CocoaLumberjack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Livv-LogglyLogger-CocoaLumberjack.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>21C7137167156C51E68D3991</key>
+		<key>0E748C43CE740679B1EED9D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2B4A3930A266CE1BC622BB88</key>
+		<key>6D025CCCF6E0DDCF0358E98A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EA25C634903F785D953F3BCA</key>
+		<key>7D33310C3CA3FAFEFB3509D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F1770E4EAEA67978B2DAE8C3</key>
+		<key>9748CA7B3E7A551E3ED6156A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9E04BAAF0F75E3BFDC9EBF2E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F44E29D036CF6B48764F160</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC475AD3ECB5232D21A8C7F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

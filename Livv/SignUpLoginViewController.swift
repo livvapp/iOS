@@ -11,6 +11,7 @@ import Realm
 import Alamofire
 import SwiftyJSON
 
+
 class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     
     private var emailbox: UIView!
@@ -278,7 +279,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
         
         //verify code description
         emailverifyLabelExplanation = UILabel(frame: CGRectMake(20, 27, emailcodebox.frame.size.width-40, 30))
-        emailverifyLabelExplanation.text = "A code has been sent to your email"
+        emailverifyLabelExplanation.text = "A code has been sent to your email."
         emailverifyLabelExplanation.font = UIFont(name: "HelveticaNeue",
             size: 9.0)
         emailverifyLabelExplanation.numberOfLines = 2
@@ -592,54 +593,55 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
         loginverifybox.addSubview(phoneVerifyLabelExplanationForgot)
         
         self.buildAgreeTextViewFromString("By using Livv, you agree to the #<ts>terms of service #and #<pp>privacy policy#.")
+        
+        //OPEN AUTO
+        
+        if ((NSUserDefaults.standardUserDefaults().objectForKey("step")) == nil){
+
+        }
+        else if (NSUserDefaults.standardUserDefaults().objectForKey("step")! as! String) == "1" {
+            var email = (NSUserDefaults.standardUserDefaults().objectForKey("email") as! String)
+            self.emailverifyLabelExplanation.text = "A code has been sent to \(email)"
+            self.emailcodebox.hidden = false
+            self.openWindow(self.emailcodebox)
+            self.emailVerifyField.becomeFirstResponder()
+            
+        }
+        else if (NSUserDefaults.standardUserDefaults().objectForKey("step")! as! String) == "2" {
+            self.phoneandpasswordbox.hidden = false
+            self.phoneTextField.becomeFirstResponder()
+            self.openWindow(self.phoneandpasswordbox)
+            
+        }
+        else if (NSUserDefaults.standardUserDefaults().objectForKey("step")! as! String) == "3" {
+            var phone = (NSUserDefaults.standardUserDefaults().objectForKey("phone") as! String)
+            self.phoneverifyLabelExplanation.text = "A code has been sent to \(phone)"
+            self.phonecodebox.hidden = false
+            self.phoneVerifyField.becomeFirstResponder()
+            self.openWindow(self.phonecodebox)
+            
+        }
+        else if (NSUserDefaults.standardUserDefaults().objectForKey("step")! as! String) == "4" {
+            self.contactexplanationbox.hidden = false
+            self.openWindow(self.contactexplanationbox)
+        }
+        else if (NSUserDefaults.standardUserDefaults().objectForKey("step")! as! String) == "5" {
+            self.locationexplanationbox.hidden = false
+            self.openWindow(self.locationexplanationbox)
+            
+        }
+        else if (NSUserDefaults.standardUserDefaults().objectForKey("step")! as! String) == "6" {
+            self.notificationexplanationbox.hidden = false
+            self.openWindow(self.notificationexplanationbox)
+            
+        }
+        else {
+            self.loginverifybox.hidden = false
+            self.loginVerifyField.becomeFirstResponder()
+            self.openWindow(self.loginverifybox)
+        }
     }
-    
-    //    func notificationProceed(sender: UIButton!){
-    //
-    //        //to add: Request user location
-    //        var user: RLMResults = User.allObjects()
-    //        let realm = RLMRealm.defaultRealm()
-    //        realm.beginWriteTransaction()
-    //        (user[0] as User).complete = true
-    //        realm.commitWriteTransaction()
-    //        NSUserDefaults.standardUserDefaults().setObject("0", forKey: "step")
-    //        LoginOrDrawerController(window: self.window)
-    //
-    //    }
-    //
-    //    func locationProceed(sender: UIButton!){
-    //
-    //        self.closeWindow(self.locationexplanationbox)
-    //        self.notificationexplanationbox.hidden = false
-    //        self.openWindow(self.notificationexplanationbox)
-    //        var manager:CLLocationManager = CLLocationManager()
-    //        manager.requestWhenInUseAuthorization()
-    //        NSUserDefaults.standardUserDefaults().setObject("6", forKey: "step")
-    //
-    //    }
-    //
-    //    func contactProceed(sender: UIButton!){
-    //
-    //
-    //        swiftAddressBook?.requestAccessWithCompletion({ (success, error) -> Void in
-    //            if success {
-    //                self.closeWindow(self.contactexplanationbox)
-    //                NSUserDefaults.standardUserDefaults().setObject("5", forKey: "step")
-    //                self.locationexplanationbox.hidden = false
-    //                self.openWindow(self.locationexplanationbox)
-    //            }
-    //            else {
-    //                self.closeWindow(self.contactexplanationbox)
-    //                NSUserDefaults.standardUserDefaults().setObject("5", forKey: "step")
-    //                self.locationexplanationbox.hidden = false
-    //                self.openWindow(self.locationexplanationbox)
-    //            }
-    //        })
-    //    }
-    //
-    
-    
-    
+
     func verifyPhoneLogin(sender: UIButton!){
         
         if count(loginVerifyField.text) != 7 {
@@ -648,9 +650,10 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
             error.hidden = false
         } else {
             
+            var phone = (NSUserDefaults.standardUserDefaults().objectForKey("phone") as! String)
+            //self.phoneVerifyLabelExplanationForgot.text = "A code has been sent to \(phone)"
             
-            
-            let parameters = ["phone": "1\(phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 1), end: advance(phoneTextFieldLogin.text.startIndex, 4))) + phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 6), end: advance(phoneTextFieldLogin.text.startIndex, 9))) + phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 10), end: advance(phoneTextFieldLogin.text.endIndex, 0))))", "password": "\(loginVerifyField.text.substringWithRange(Range<String.Index>(start: advance(loginVerifyField.text.startIndex, 0), end: advance(loginVerifyField.text.startIndex, 3))) + loginVerifyField.text.substringWithRange(Range<String.Index>(start: advance(loginVerifyField.text.startIndex, 4), end: advance(loginVerifyField.text.endIndex, 0))))"]
+            let parameters = ["phone": "1\(phone)", "password": "\(loginVerifyField.text.substringWithRange(Range<String.Index>(start: advance(loginVerifyField.text.startIndex, 0), end: advance(loginVerifyField.text.startIndex, 3))) + loginVerifyField.text.substringWithRange(Range<String.Index>(start: advance(loginVerifyField.text.startIndex, 4), end: advance(loginVerifyField.text.endIndex, 0))))"]
             
             Alamofire.request(.POST, "\(globalURL)/auth/local", parameters: parameters, encoding: .JSON).validate(statusCode: 200..<300).responseJSON {
                 (request, response, json, error) in
@@ -661,6 +664,8 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 println("Error: \(error)")
                 
                 if error == nil {
+                    
+                    NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "step")
                     
                     println(JSON(json!))
                     
@@ -675,7 +680,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     
                     //newUser.email = self.emailTextField.text
                     newUser.token = myJSON["token"].string!
-                    newUser.phone = "1\(self.phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(self.phoneTextFieldLogin.text.startIndex, 1), end: advance(self.phoneTextFieldLogin.text.startIndex, 4))) + self.phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(self.phoneTextFieldLogin.text.startIndex, 6), end: advance(self.phoneTextFieldLogin.text.startIndex, 9))) + self.phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(self.phoneTextFieldLogin.text.startIndex, 10), end: advance(self.phoneTextFieldLogin.text.endIndex, 0))))"
+                    newUser.phone = "1\(phone)"
                     
                     realm.addObject(newUser)
                     realm.commitWriteTransaction()
@@ -685,6 +690,10 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     
                     
                 }else {
+                    
+                    var error: String = "verifyPhoneLogin error: \(request), response: \(response), data: \(json), error: \(error)"
+                    
+                    DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
                     
                     self.error.hidden = false
                     self.error.text = "Oops! Wrong code!"
@@ -728,12 +737,16 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 
             }else{
                 
+                var error: String = "getUsername error! request: \(req), response: \(res), data: \(json), error: \(error)"
+                
+                DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
+                
             }
         }
     }
     
     func submitLogin(sender: UIButton!){
-        
+
         if (phoneTextFieldLogin.text == ""){
             error.hidden = false
             error.text = "Please enter a valid phone number"
@@ -743,6 +756,11 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
             error.text = "Please enter a ten digit phone number"
             
         } else {
+            
+            NSUserDefaults.standardUserDefaults().setObject("\(phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 1), end: advance(phoneTextFieldLogin.text.startIndex, 4))) + phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 6), end: advance(phoneTextFieldLogin.text.startIndex, 9))) + phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 10), end: advance(phoneTextFieldLogin.text.endIndex, 0))))", forKey: "phone")
+            
+//            var email = (NSUserDefaults.standardUserDefaults().objectForKey("email") as! String)
+//            self.emailverifyLabelExplanation.text = "A code has been sent to \(email)"
             
             let parameters = ["phone": "1\(phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 1), end: advance(phoneTextFieldLogin.text.startIndex, 4))) + phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 6), end: advance(phoneTextFieldLogin.text.startIndex, 9))) + phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 10), end: advance(phoneTextFieldLogin.text.endIndex, 0))))"]
             
@@ -762,9 +780,13 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     self.loginVerifyField.becomeFirstResponder()
                     
                     self.openWindow(self.loginverifybox)
-                    
+                    NSUserDefaults.standardUserDefaults().setObject("7", forKey: "step")
                     
                 }else {
+                    
+                    var error: String = "submitLogin phone error! request: \(request), response: \(response), data: \(data), error: \(error)"
+                    
+                    DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
                     
                     self.error.hidden = false
                     self.error.text = "Oops! This phone doesn't exist."
@@ -781,9 +803,13 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     func submitPhoneAndPassword(sender: UIButton!){
         
         
+        
         if (count((phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 1), end: advance(phoneTextField.text.startIndex, 4))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 6), end: advance(phoneTextField.text.startIndex, 9))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 10), end: advance(phoneTextField.text.endIndex, 0))))) == 10){
             
-            let parameters = [ "phone" : "1\(phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 1), end: advance(phoneTextField.text.startIndex, 4))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 6), end: advance(phoneTextField.text.startIndex, 9))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 10), end: advance(phoneTextField.text.endIndex, 0))))", "email": emailTextField.text, "password": "stoptryingtoreverseengineerourrestapi"]
+            var email = (NSUserDefaults.standardUserDefaults().objectForKey("email") as! String)
+            //self.emailverifyLabelExplanation.text = "A code has been sent to \(email)"
+            
+            let parameters = [ "phone" : "1\(phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 1), end: advance(phoneTextField.text.startIndex, 4))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 6), end: advance(phoneTextField.text.startIndex, 9))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 10), end: advance(phoneTextField.text.endIndex, 0))))", "email": email, "password": "stoptryingtoreverseengineerourrestapi"]
             
             Alamofire.request(.POST, "\(globalURL)/api/users", parameters: parameters, encoding: .JSON).validate(statusCode: 200..<300).responseJSON {
                 (request, response, json, error) in
@@ -794,6 +820,10 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 println("Error: \(error)")
                 
                 if error == nil {
+                    
+                    
+                    NSUserDefaults.standardUserDefaults().setObject("\(self.phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(self.phoneTextField.text.startIndex, 1), end: advance(self.phoneTextField.text.startIndex, 4))) + self.phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(self.phoneTextField.text.startIndex, 6), end: advance(self.phoneTextField.text.startIndex, 9))) + self.phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(self.phoneTextField.text.startIndex, 10), end: advance(self.phoneTextField.text.endIndex, 0))))", forKey: "phone")
+                    
                     self.phoneverifyLabelExplanation.text = "A three digit code was sent to \(self.phoneTextField.text)"
                     
                     var myJSON = JSON(json!)
@@ -825,8 +855,12 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     
                 }else {
                     
+                    var error: String = "Signup phone error! request: \(request), response: \(response), data: \(json), error: \(error)"
+                    
+                    DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
+                    
                     self.error.hidden = false
-                    self.error.text = "Oops! This phone is registered."
+                    self.error.text = "Oops! Something went wrong!"
                 }
                 
             }
@@ -861,7 +895,8 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
             openWindow(emailbox)
         }
         else if (NSUserDefaults.standardUserDefaults().objectForKey("step")! as! String) == "1" {
-            self.emailverifyLabelExplanation.text = "A code has been sent to \(self.emailTextField.text)"
+            var email = (NSUserDefaults.standardUserDefaults().objectForKey("email") as! String)
+            self.emailverifyLabelExplanation.text = "A code has been sent to \(email)"
             self.emailcodebox.hidden = false
             self.openWindow(self.emailcodebox)
             self.emailVerifyField.becomeFirstResponder()
@@ -874,6 +909,8 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
             
         }
         else if (NSUserDefaults.standardUserDefaults().objectForKey("step")! as! String) == "3" {
+            var phone = (NSUserDefaults.standardUserDefaults().objectForKey("phone") as! String)
+            self.phoneverifyLabelExplanation.text = "A code has been sent to \(phone)"
             self.phonecodebox.hidden = false
             self.phoneVerifyField.becomeFirstResponder()
             self.openWindow(self.phonecodebox)
@@ -920,15 +957,23 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 println("Error: \(error)")
                 
                 if error == nil {
+                    NSUserDefaults.standardUserDefaults().setObject("\(self.emailTextField.text)", forKey: "email")
                     
                     self.closeWindow(self.emailbox)
-                    self.emailverifyLabelExplanation.text = "A code has been sent to \(self.emailTextField.text)"
+                    
+                    var email = (NSUserDefaults.standardUserDefaults().objectForKey("email") as! String)
+                    self.emailverifyLabelExplanation.text = "A code has been sent to \(email)"
                     self.emailcodebox.hidden = false
                     self.openWindow(self.emailcodebox)
                     self.emailVerifyField.becomeFirstResponder()
+                    
                     NSUserDefaults.standardUserDefaults().setObject("1", forKey: "step")
                     
                 }else {
+                    
+                    var error: String = "Error while getting email! request: \(request), response: \(response), data: \(data), error: \(error)"
+                    
+                    DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
                     
                     self.error.hidden = false
                     self.error.text = "Oops! It appears this email is registered."
@@ -1000,6 +1045,10 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 
             }else {
                 
+                var error: String = "Error while sending phone number! request: \(request), response: \(response), data: \(data), error: \(error)"
+                
+                DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
+                
                 self.error.hidden = false
                 self.error.text = "Woah there! Wrong code!"
                 
@@ -1046,8 +1095,9 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
         error.hidden = true
         error.text = ""
         
+        var phone = (NSUserDefaults.standardUserDefaults().objectForKey("phone")! as! String)
         
-        let URL = NSURL(string: "\(globalURL)/api/users/1\(phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 1), end: advance(phoneTextField.text.startIndex, 4))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 6), end: advance(phoneTextField.text.startIndex, 9))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 10), end: advance(phoneTextField.text.endIndex, 0))))/activate")!
+        let URL = NSURL(string: "\(globalURL)/api/users/1\(phone)/activate")!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = "PUT"
         
@@ -1075,6 +1125,10 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 
             }else {
                 
+                var error: String = "Error while verifyingphone code! request: \(request), response: \(response), data: \(data), error: \(error)"
+                
+                DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
+                
                 self.error.hidden = false
                 self.error.text = "Woah there! Wrong code!"
                 
@@ -1089,13 +1143,15 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     
     func verifyemailcode(sender: UIButton!){
         
-        
+
         error.hidden = true
         error.text = ""
         
         let parameters = [ "verified" : true]
         
-        let URL = NSURL(string: "\(globalURL)/api/emails/\(emailTextField.text)")!
+        var email = (NSUserDefaults.standardUserDefaults().objectForKey("email")! as! String)
+        
+        let URL = NSURL(string: "\(globalURL)/api/emails/\(email)")!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = "PUT"
         
@@ -1123,6 +1179,10 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 
             }else {
                 
+                var error: String = "Error while verifying email code! request: \(request), response: \(response), data: \(data), error: \(error)"
+                
+                DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
+                
                 self.error.hidden = false
                 self.error.text = "Woah there! Wrong code!"
                 
@@ -1135,6 +1195,8 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func tap(sender: UIButton!){
+        
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "step")
         
         if(!emailbox.hidden) { closeWindow(emailbox) }
         if(!emailcodebox.hidden) { closeWindow(emailcodebox)}

@@ -77,6 +77,33 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.scrollEnabled = false
         //self.tableView.rowHeight = 40
+        
+        setupRightMenuButton()
+        
+    }
+    
+    func setupRightMenuButton() {
+        
+        var button: UIButton! = UIButton(frame: CGRectMake(0,0,20,20))
+        button.setImage(UIImage(named: "right.png"), forState: .Normal)
+        button.addTarget(self, action: "rightDrawerButtonPress:", forControlEvents: .TouchUpInside)
+        
+        var item = UIBarButtonItem(customView: button)
+        self.navigationItem.setRightBarButtonItem(item, animated: true)
+    }
+    
+    func rightDrawerButtonPress(sender: AnyObject?) {
+        let center = MapViewController()
+        center.showSplashScreen = false
+        //center.inviteLocation.longitude = center.userLocation.coordinate.longitude
+        //center.inviteLocation.latitude = center.userLocation.coordinate.latitude
+        let nav = UINavigationController(rootViewController: center)
+        self.evo_drawerController?.setCenterViewController(nav, withFullCloseAnimation: true, completion: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //super.screenName = "Settings"
     }
     
     //    override func viewWillAppear(animated: Bool) {
@@ -124,17 +151,20 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
                 let users = User.allObjects()
                 let user = users[UInt(0)] as! User
                 cell.textLabel?.text = user.username
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
                 var separatorLineView1: UIView! =  UIView(frame: CGRectMake(0, cell.frame.height, tableView.frame.size.width - 15, 1))
                 separatorLineView1.backgroundColor  = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
                 cell.addSubview(separatorLineView1)
                 
             } else {
                 cell.textLabel?.text = "UCSB"
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
             }
             
         case DrawerSection.Help.rawValue:
             if indexPath.row == 0 {
                 cell.textLabel?.text = "FAQ"
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
                 var separatorLineView2: UIView! =  UIView(frame: CGRectMake(0, cell.frame.height, tableView.frame.size.width - 15, 1))
                 separatorLineView2.backgroundColor  = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
                 cell.addSubview(separatorLineView2)
@@ -142,6 +172,7 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
             }
             else if indexPath.row == 1 {
                 cell.textLabel?.text = "Privacy Policy"
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
                 var separatorLineView3: UIView! =  UIView(frame: CGRectMake(0, cell.frame.height, tableView.frame.size.width - 15, 1))
                 separatorLineView3.backgroundColor  = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
                 cell.addSubview(separatorLineView3)
@@ -149,6 +180,7 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
             }
             else if indexPath.row == 2 {
                 cell.textLabel?.text = "Terms and Conditions"
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
                 var separatorLineView4: UIView! =  UIView(frame: CGRectMake(0, cell.frame.height, tableView.frame.size.width - 15, 1))
                 separatorLineView4.backgroundColor  = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
                 cell.addSubview(separatorLineView4)
@@ -156,10 +188,12 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
             }
             else {
                 cell.textLabel?.text = "Updates"
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
                 cell.accessoryType = .DisclosureIndicator
             }
         case DrawerSection.Logout.rawValue:
             cell.textLabel?.text = "Logout"
+            cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
             cell.accessoryType = .DisclosureIndicator
         default:
             break

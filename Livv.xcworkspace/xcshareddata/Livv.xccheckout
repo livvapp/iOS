@@ -22,7 +22,7 @@
 		<key>30828331ACB832B8A0E3C9B51618A147FBD2C8F1</key>
 		<string>..</string>
 		<key>9C2D01DAAF1C8A6D9DC7D712F8AC2A5AD59D0B4D</key>
-		<string>../../../PLEEBVERSIONONE/Pleeb</string>
+		<string>../../PLEEBVERSIONONE/Pleeb</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:brentkirkland/Livv.git</string>

@@ -72,7 +72,7 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
         self.addSubview(usernameLabel)
         
         var usernameExplanationLabel: UILabel = UILabel(frame: CGRectMake(20, 27, self.frame.size.width-40, 30))
-        usernameExplanationLabel.text = "Usernames act as your identity for the leader boards."
+        usernameExplanationLabel.text = "Help your friends identify invites."
         usernameExplanationLabel.font = UIFont(name: "HelveticaNeue",
             size: 9.0)
         usernameExplanationLabel.numberOfLines = 2
@@ -188,6 +188,10 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
                 //show bottom screen button
                 
             }else {
+                
+                var error: String = "Error while creating username! request: \(request), response: \(response), data: \(data), error: \(error)"
+                
+                DDLogVerbose(error, level: ddLogLevel, asynchronous: true)
                 
                 self.usernameLabel.text = "Oops! Try Again!"
                 self.usernameLabel.textColor = UIColor.redColor()

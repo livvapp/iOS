@@ -8,6 +8,12 @@
 
 import UIKit
 import Realm
+import LogglyLogger_CocoaLumberjack
+import CocoaLumberjack
+import Fabric
+import Crashlytics
+
+let ddLogLevel:DDLogLevel = DDLogLevel.Verbose
 
 let globalURL: String! = "http://livv.net"
 
@@ -19,8 +25,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        println("debug")
-        // Override point for customization after application launch.
+        
+        var loggly: LogglyLogger = LogglyLogger()
+        loggly.logFormatter = LogglyFormatter()
+        loggly.logglyKey = "3b05e407-4548-47ca-bc35-69696794ea62"
+        
+        var lfields: LogglyFields = LogglyFields()
+        var lformatter: LogglyFormatter! = LogglyFormatter(logglyFieldsDelegate: lfields)
+        
+        loggly.logFormatter = lformatter
+        
+        loggly.saveInterval = 45
+        
+        DDLog.addLogger(loggly)
+        //DDLog.addLogger(CrashlyticsLogger())
+
+        DDLogVerbose("App did launch", level: ddLogLevel, asynchronous: true)
+        
+        Fabric.with([Crashlytics()])
         
         // Inside your application(application:didFinishLaunchingWithOptions:)
         
@@ -54,7 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             LoginOrDrawerController(frame: self.window!.frame).setLog(self.window)
         }
         else {
-            
+            DDLogVerbose((user[0] as! User).username, level: ddLogLevel, asynchronous: true)
+            lfields.userid = (user[0] as! User).username
             LoginOrDrawerController(frame: self.window!.frame).root(self.window)
             
         }

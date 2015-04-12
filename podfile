@@ -7,6 +7,7 @@ target 'Livv' do
 	pod 'Realm'
 	pod 'Alamofire', '~> 1.2'
 	pod 'SwiftyJSON', '>= 2.1.3'
+	pod "LogglyLogger-CocoaLumberjack", "~> 2.0"
 end
 
 target 'LivvTests' do
