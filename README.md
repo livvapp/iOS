@@ -1,8 +1,8 @@
 # Livv
 
 TODO:
-
-* Notifications
-* Invite View Controller
-* Realm location query
-# iOS
+* TEST
+* Location Query
+* Lock Drawer 
+* Phone Numbers
+* 

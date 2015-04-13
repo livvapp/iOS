@@ -15,7 +15,6 @@ import QuartzCore
 import AddressBook
 import SwiftyJSON
 
-
 enum CenterViewControllerSection: Int {
     case LeftViewState
     case LeftDrawerAnimation
@@ -73,6 +72,10 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         //var attributionLabel: UILabel = mapView.subviews.
         
         // INITILIZE LOCATION MANAGER
+        
+        let types = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
+        let pushSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(pushSettings)
         
         manager = nil
         manager = CLLocationManager()
@@ -159,8 +162,8 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                 
                 if self.inviteLocation != nil {
                 
-                    let spanX = 0.002
-                    let spanY = 0.002
+                    let spanX = 0.00001
+                    let spanY = 0.00001
                     
                     var newRegion = MKCoordinateRegion(center: self.inviteLocation, span: MKCoordinateSpanMake(spanX, spanY))
                     
@@ -339,6 +342,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                         var weight: String = myJSON[x]["topweight"].stringValue
                         
                         newEvent.address = address
+                        newEvent.points = myJSON[x]["score"].intValue
                         realm.addObject(newEvent)
                         
                         println(lon)
@@ -387,169 +391,6 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     }
     
     
-//    func getSelectedTags(){
-//        
-//        let users = User.allObjects()
-//        let user = users[UInt(0)] as! User
-//        
-//        let URL: NSURL! = NSURL(string:"\(globalURL)/api/posts/tags")
-//        
-//        let mutableURLRequest = NSMutableURLRequest(URL: URL!)
-//        mutableURLRequest.HTTPMethod = "GET"
-//        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
-//        mutableURLRequest.setValue("\(self.address)", forHTTPHeaderField: "address")
-//        var JSONSerializationError: NSError? = nil
-//        
-//        //call alamo
-//        Alamofire.request(mutableURLRequest).responseJSON { (req, res, json, error) in
-//            if(error != nil) {
-//                NSLog("Error: \(error)")
-//                println("Request: \(req)")
-//                println("Response: \(res)")
-//                println("JSON Data: \(json)")
-//                println("Error: \(error)")
-//                
-//                
-//                //self.tableView = TagSelectorTableView(mapClass: self)
-//                self.mapView.showsUserLocation = false
-//            }
-//            else {
-//                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-//                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-//                    
-//                    NSLog("Error: \(error)")
-//                    println("Request: \(req)")
-//                    println("Response: \(res)")
-//                    println("JSON Data: \(json)")
-//                    println("Error: \(error)")
-//                    
-//                    println("selecting a tag")
-//                    
-//                    if json != nil {
-//                        var myJSON = JSON(json!)
-//                        if JSON(json!)["list"] != nil {
-//                            println(myJSON["list"])
-//                        }
-//                        var eventt: RLMResults = Event.objectsWhere("address = %@", self.address)
-//                        if ((Event.objectsWhere("address = %@", self.address).count != 0) &&  eventt[0] != nil ){
-//                            //var eventt: RLMResults = Event.objectsWhere("address = %@", self.address)
-//                            var event = eventt[0] as! Event
-//                            
-//                            for (index: String, subJson: JSON) in JSON(json!)["list"] {
-//                                println("the key value is: \(subJson.stringValue)")
-//                                
-//                                for var i = 0; i < Int(event.tags.count); i++ {
-//                                    
-//                                    if event.tags[UInt(i)].name == subJson.stringValue{
-//                                        
-//                                        let realm = RLMRealm.defaultRealm()
-//                                        realm.beginWriteTransaction()
-//                                        var newTag = Tag()
-//                                        newTag = event.tags[UInt(i)] as! Tag
-//                                        newTag.userSelectedTag = 1
-//                                        realm.commitWriteTransaction()
-//                                        
-//                                    }
-//                                    
-//                                }
-//                                
-//                                
-//                            }
-//                            
-//                        }
-//                        
-//                        
-//                    }
-//                    
-//                    //                    dispatch_async(dispatch_get_main_queue()) {
-//                    //
-//                    //
-//                    //
-//                    //                        //self.tableView = TagSelectorTableView(mapClass: self)
-//                    //                        self.view.addSubview(TagSelectorView(frame: CGRectMake(0, 72, self.view.frame.width, self.view.frame.height - 72), mapClass: self))
-//                    //                        self.mapView.showsUserLocation = false
-//                    //
-//                    //                    }
-//                }
-//            }
-//        }
-//    }
-    
-    
-    
-    
-    
-    //POST
-//    
-//    func post(tag: String!)->Void {
-//        
-//        let users = User.allObjects()
-//        let user = users[UInt(0)] as! User
-//        
-//        
-//        let parameters = [
-//            "loc": [
-//                "type": "Point",
-//                "coordinates": [
-//                    mapView.userLocation.coordinate.longitude,
-//                    mapView.userLocation.coordinate.latitude
-//                ]
-//            ],
-//            "accuracy": accuracy,
-//            "address": address,
-//            "tag": tag
-//        ]
-//        
-//        let URL = NSURL(string: "\(globalURL)/api/posts")!
-//        let mutableURLRequest = NSMutableURLRequest(URL: URL)
-//        mutableURLRequest.HTTPMethod = "POST"
-//        
-//        var JSONSerializationError: NSError? = nil
-//        mutableURLRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: &JSONSerializationError)
-//        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
-//        
-//        print(parameters)
-//        
-//        Alamofire.request(mutableURLRequest).response {
-//            
-//            (request, response, data, error) -> Void in
-//            
-//            println("Requesttttt: \(request)")
-//            println("Responseeeee: \(response)")
-//            println("Dataaaa: \(data)")
-//            println("Erroreeee: \(error)")
-//            
-//            if error == nil {
-//                
-//                let realm = RLMRealm.defaultRealm()
-//                realm.beginWriteTransaction()
-//                user.lastTag = tag
-//                realm.commitWriteTransaction()
-//                
-//                println("the last tag was \(user.lastTag)")
-//                
-//                //self.tableView.closeWindow(self.tableView)
-//                
-//                self.setUpVotes()
-//                
-//                
-//                
-//            }else {
-//                
-//                var alert: UIAlertView = UIAlertView(title: "Network Error", message: "You seem to have a bad connection.", delegate: self, cancelButtonTitle: "Close")
-//                //self.tableView.closeWindow(self.tableView)
-//                alert.dismissWithClickedButtonIndex(0, animated: true)
-//                alert.show()
-//                
-//                
-//            }
-//            
-//        }
-//        
-//    }
-//    
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         
         if intialLocationLoad == false{
@@ -562,9 +403,8 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         
         //if userLoca
         
+        
     }
-    
-    
     
     //function that ask for currentLocation and loads the map at user location
     func currentLocation() -> Void {
@@ -657,14 +497,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         button.addTarget(self, action: "leftDrawerButtonPress:", forControlEvents: .TouchUpInside)
         
         var item = UIBarButtonItem(customView: button)
-        
-        
-        //        var button2: UIButton! = UIButton(frame: CGRectMake(30,0,20,20))
-        //        button2.setImage(UIImage(named: "searchIcon.png"), forState: .Normal)
-        //        //button2.addTarget(self, action: "leftDrawerButtonPress:", forControlEvents: .TouchUpInside)
-        //        var item2 = UIBarButtonItem(customView: button2)
-        
-        //let leftDrawerButton = DrawerBarButtonItem(target: self, action: "leftDrawerButtonPress:")
+
         self.navigationItem.setLeftBarButtonItem(item, animated: true)
         
         
@@ -794,47 +627,14 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
-//        if lastLocation.distanceFromLocation(locations[0] as! CLLocation) > 50 {
-//            
-//            println("we made it!")
-//            
-//        }
-        
         userLocation = locations[0] as! CLLocation
         lastLocation = locations[0] as! CLLocation
         
-        //        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
-        //
-        //            if (error != nil) {
-        //
-        //                println(error)
-        //
-        //            } else {
-        //
-        //                if let p = CLPlacemark(placemark: placemarks?[0] as CLPlacemark) {
-        //
-        //                    var subThoroughfare:String = ""
-        //
-        //                    if (p.subThoroughfare != nil) {
-        //
-        //                        subThoroughfare = p.subThoroughfare
-        //
-        //                    }
-        //                    self.accuracy = locations[0].horizontalAccuracy
-        //                    self.address = "\(subThoroughfare) \(p.thoroughfare)^.#/\(p.subLocality)^.#/\(p.subAdministrativeArea)^.#/\(p.postalCode)^.#/\(p.country)"
-        //
-        //                }
-        //
-        //
-        //            }
-        //
-        //        })
-        //
-        //
-        //
     }
     
     func reverseGeocode(){
+        
+        
         
         var methodStart: NSDate = NSDate()
         
@@ -868,11 +668,12 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                     
                     if user.username == ""{
                         
+                        
                         var createView: CreateUsernameView! = CreateUsernameView(frame: CGRectMake(50, -170, self.view.frame.size.width-100, 170))
                         self.view.addSubview(createView)
                         createView.openWindow(self)
                         createView.usernameTextField.becomeFirstResponder()
-                        self.mapView.showsUserLocation = false
+                        
                         
                     } else {
                         
@@ -880,7 +681,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                         
                         self.tableView.alpha = 0.0
                         self.view.addSubview(self.tableView)
-                        self.mapView.showsUserLocation = false
+        
                         UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                             
                             self.tableView.alpha = 1.0
@@ -950,10 +751,9 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         
         if (view.reuseIdentifier == "me"){
+            self.mapView.showsUserLocation = false
             reverseGeocode()
-            //            self.getSelectedTags()
-            
-            
+
         }
         
         println(view.reuseIdentifier)
@@ -1007,114 +807,65 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     
     //ADDRESS BOOK ACCESS FOR FRIENDS
     
-    func createAddressBook() -> Bool {
-        if self.adbk != nil {
-            return true
-        }
-        var err : Unmanaged<CFError>? = nil
-        let adbk : ABAddressBook? = ABAddressBookCreateWithOptions(nil, &err).takeRetainedValue()
-        if adbk == nil {
-            println(err)
-            self.adbk = nil
-            return false
-        }
-        self.adbk = adbk
-        return true
-    }
-    
-    func determineStatus() -> Bool {
-        let status = ABAddressBookGetAuthorizationStatus()
-        switch status {
-        case .Authorized:
-            return self.createAddressBook()
-        case .NotDetermined:
-            var ok = false
-            ABAddressBookRequestAccessWithCompletion(nil) {
-                (granted:Bool, err:CFError!) in
-                dispatch_async(dispatch_get_main_queue()) {
-                    if granted {
-                        ok = self.createAddressBook()
-                    }
-                }
-            }
-            if ok == true {
-                return true
-            }
-            self.adbk = nil
-            return false
-        case .Restricted:
-            self.adbk = nil
-            return false
-        case .Denied:
-            self.adbk = nil
-            return false
-        }
-    }
-    
     func getContactNames() {
-        if !self.determineStatus() {
-            println("not authorized")
-            return
-        }
-        else {
-            let users = User.allObjects()
-            let user = users[UInt(0)] as! User
-            
-            let people = ABAddressBookCopyArrayOfAllPeople(adbk).takeRetainedValue() as NSArray as [ABRecord]
-            
-            for person in people {
-                
-                var phones: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeUnretainedValue() as ABMultiValueRef
-                
-                for var index = 0; index < ABMultiValueGetCount(phones); ++index{
-                    let currentPhoneLabel = ABMultiValueCopyLabelAtIndex(phones, index).takeUnretainedValue() as CFStringRef as String
-                    let currentPhoneValue = ABMultiValueCopyValueAtIndex(phones, index).takeUnretainedValue() as! CFStringRef as String
-                    
-                    if currentPhoneLabel == kABPersonPhoneMobileLabel as! String {
+        
+        swiftAddressBook?.requestAccessWithCompletion({ (success, error) -> Void in
+            if success {
+                if let people = swiftAddressBook?.allPeople {
+                    for person in people {
+//                        NSLog("%@", person.names?.map( {$0.value} ))
                         
-                        var skinnyPhone: String = ""
-                        
-                        for char: Character in currentPhoneValue {
+                        if (person.firstName != nil){
                             
-                            if (char == "1" || char == "2" || char == "3" || char == "4" || char == "5" || char == "6" || char == "7" || char == "8" || char == "9" || char == "0") {
+                            let name: String!
+                            
+                            if person.lastName != nil {
                                 
-                                skinnyPhone = skinnyPhone + [char]
+                                name = "\(person.firstName as String!) \(person.lastName as String!)"
+                                println(name)
+                                
+                            } else {
+                                name = "\(person.firstName as String!)"
+                                println(name)
                                 
                             }
                             
-                        }
-                        
-                        if count(skinnyPhone) == 10 {
-                            
-                            skinnyPhone = "1" + skinnyPhone
-                            
-                        }
-                        if count(skinnyPhone) == 11 {
-                            
-                            if user.phone != skinnyPhone {
+                            if let personNumbers = person.phoneNumbers {
+                                let numbers = (personNumbers.map {number in "\(number.value)"})
                                 
-                                //println(skinnyPhone)
-                                
-                                if (Contacts.objectsWhere("phone = '\(skinnyPhone)'").count < 1 &&  (ABRecordCopyCompositeName(person).takeRetainedValue() as? String != nil)){
-                                    
-                                    println(ABRecordCopyCompositeName(person).takeRetainedValue() as? String)
-                                    let contact = Contacts()
-                                    let realm = RLMRealm.defaultRealm()
-                                    realm.beginWriteTransaction()
-                                    contact.name = ABRecordCopyCompositeName(person).takeRetainedValue() as String
-                                    contact.phone = skinnyPhone
-                                    realm.addObject(contact)
-                                    realm.commitWriteTransaction()
+                                let personNumber = personNumbers[0]
+                                let characterSet = NSCharacterSet(charactersInString: "()-+ ")
+                                var phone = (personNumber.value.componentsSeparatedByCharactersInSet(characterSet) as NSArray).componentsJoinedByString("")
+                                if !phone.hasPrefix("1") {
+                                    phone = ("1\(phone)")
                                 }
+                                
+                                if count(phone) == 11 {
+                                    
+                                    if (Contacts.objectsWhere("phone = '\(phone)'").count < 1) {
+                                        
+                                        let contact = Contacts()
+                                        let realm = RLMRealm.defaultRealm()
+                                        realm.beginWriteTransaction()
+                                        contact.name = name
+                                        contact.phone = phone
+                                        realm.addObject(contact)
+                                        realm.commitWriteTransaction()
+                                        println(contact)
+                                        
+                                    }
+
+                                }
+                                
                             }
                         }
-                        
                     }
-                    
                 }
-                
             }
-        }
+            else {
+                DDLogVerbose("Contact books were not accessed", level: ddLogLevel, asynchronous: true)
+            }
+        })
         
     }
     

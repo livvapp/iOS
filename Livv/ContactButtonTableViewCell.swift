@@ -51,9 +51,10 @@ class ContactButtonTableViewCell: TagButtonViewCell {
         var titleWidth: CGFloat! = (button.frame.size.width as CGFloat!) + 10
         //var titleHeight: CGFloat! = (button.titleLabel?.frame.size.height as CGFloat!) + 5
         button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)
+        //button.autoresizingMask = .FlexibleWidth
         contentView.addSubview(button)
         
-        count.frame = CGRect(x: self.frame.width + 15, y: 0, width: 30, height: contentView.frame.height)
+        count.frame = CGRect(x: self.frame.width - 40, y: 0, width: 30, height: contentView.frame.height)
         count.setTitle("\(countNumber)", forState: .Normal)
         count.addTarget(self, action: "countUpdate:", forControlEvents: .TouchUpInside)
         count.userInteractionEnabled = false
@@ -61,6 +62,7 @@ class ContactButtonTableViewCell: TagButtonViewCell {
         count.setTitleColor(UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0), forState: .Normal)
         count.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Right
         count.titleLabel?.textAlignment = .Right
+        count.autoresizingMask = .FlexibleWidth
         contentView.addSubview(count)
         
     }
@@ -158,7 +160,7 @@ class ContactButtonTableViewCell: TagButtonViewCell {
                 
                 count.setTitleColor(UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1.0), forState: .Normal)
                 
-                super.view.selectedTags.append("@\(theTag.title)")
+                super.view.selectedTags.append("@\(theTag.phone)")
                 super.view.tableView.reloadData()
                 
                 if self.view.selectedTags.count != 0 {

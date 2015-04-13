@@ -50,6 +50,7 @@ code_sign() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'AFNetworking.framework'
   install_framework 'Alamofire.framework'
+  install_framework 'Bolts.framework'
   install_framework 'CocoaLumberjack.framework'
   install_framework 'LogglyLogger_CocoaLumberjack.framework'
   install_framework 'Realm.framework'
@@ -58,6 +59,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'AFNetworking.framework'
   install_framework 'Alamofire.framework'
+  install_framework 'Bolts.framework'
   install_framework 'CocoaLumberjack.framework'
   install_framework 'LogglyLogger_CocoaLumberjack.framework'
   install_framework 'Realm.framework'

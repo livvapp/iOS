@@ -217,7 +217,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
         
         
         var emailLabelExplanation: UILabel = UILabel(frame: CGRectMake(20, 27, emailbox.frame.size.width-40, 30))
-        emailLabelExplanation.text = "Livv is currently available for UCSB students."
+        emailLabelExplanation.text = "Livv is currently available for college students."
         emailLabelExplanation.font = UIFont(name: "HelveticaNeue",
             size: 9.0)
         emailLabelExplanation.numberOfLines = 2
@@ -940,7 +940,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     //todo add other email list
     func verify(sender: UIButton!){
         
-        if (emailTextField.text == "" || emailTextField.text.lowercaseString.rangeOfString(".ucsb.edu") == nil || emailTextField.text.lowercaseString.rangeOfString("@") == nil){
+        if (emailTextField.text == "" || emailTextField.text.lowercaseString.rangeOfString(".edu") == nil || emailTextField.text.lowercaseString.rangeOfString("@") == nil){
             error.hidden = false
             error.text = "Please enter a valid UCSB email"
         }

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		974A4D8284D1BA096255FFA3 /* Pods_Livv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BA437DFA476AC43F72A5A8 /* Pods_Livv.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C700B4A41ADB2292005AFCFD /* SwiftAddressBookDataStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700B49D1ADB2292005AFCFD /* SwiftAddressBookDataStructures.swift */; };
+		C700B4A51ADB2292005AFCFD /* SwiftAddressBookGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700B49E1ADB2292005AFCFD /* SwiftAddressBookGroup.swift */; };
+		C700B4A61ADB2292005AFCFD /* SwiftAddressBookHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700B49F1ADB2292005AFCFD /* SwiftAddressBookHelperMethods.swift */; };
+		C700B4A71ADB2292005AFCFD /* SwiftAddressBookPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700B4A01ADB2292005AFCFD /* SwiftAddressBookPerson.swift */; };
+		C700B4A81ADB2292005AFCFD /* SwiftAddressBookRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700B4A11ADB2292005AFCFD /* SwiftAddressBookRecord.swift */; };
+		C700B4A91ADB2292005AFCFD /* SwiftAddressBookSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700B4A21ADB2292005AFCFD /* SwiftAddressBookSource.swift */; };
+		C700B4AA1ADB2292005AFCFD /* SwiftAddressBookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C700B4A31ADB2292005AFCFD /* SwiftAddressBookWrapper.swift */; };
 		C726F38C1AD73A64008664D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F38B1AD73A64008664D6 /* AppDelegate.swift */; };
 		C726F38E1AD73A64008664D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F38D1AD73A64008664D6 /* ViewController.swift */; };
 		C726F3931AD73A64008664D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C726F3921AD73A64008664D6 /* Images.xcassets */; };
@@ -26,6 +33,7 @@
 		C73C36901AD8FF4F00200066 /* InvitesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C368F1AD8FF4E00200066 /* InvitesTableViewCell.swift */; };
 		C73C36931AD90DE900200066 /* blankicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C73C36911AD90DE900200066 /* blankicon@2x.png */; };
 		C73C36941AD90DE900200066 /* blankicon.png in Resources */ = {isa = PBXBuildFile; fileRef = C73C36921AD90DE900200066 /* blankicon.png */; };
+		C75C38881ADA5056002C84CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75C38871ADA5056002C84CF /* CoreLocation.framework */; };
 		C772EF0A1AD74588004F1180 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF091AD74588004F1180 /* SettingsViewController.swift */; };
 		C772EF0C1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF0B1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift */; };
 		C772EF0E1AD747E1004F1180 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772EF0D1AD747E1004F1180 /* MapViewController.swift */; };
@@ -70,6 +78,13 @@
 		4F138FCEA6F4F55ADD51EE7C /* Pods-Livv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livv.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Livv/Pods-Livv.debug.xcconfig"; sourceTree = "<group>"; };
 		6CAA55AD3D81B66DC01C244D /* Pods-Livv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livv.release.xcconfig"; path = "Pods/Target Support Files/Pods-Livv/Pods-Livv.release.xcconfig"; sourceTree = "<group>"; };
 		96BA437DFA476AC43F72A5A8 /* Pods_Livv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Livv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C700B49D1ADB2292005AFCFD /* SwiftAddressBookDataStructures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftAddressBookDataStructures.swift; path = "../../../../Downloads/SwiftAddressBook-Swift_1.2_take2/Pod/Classes/SwiftAddressBookDataStructures.swift"; sourceTree = "<group>"; };
+		C700B49E1ADB2292005AFCFD /* SwiftAddressBookGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftAddressBookGroup.swift; path = "../../../../Downloads/SwiftAddressBook-Swift_1.2_take2/Pod/Classes/SwiftAddressBookGroup.swift"; sourceTree = "<group>"; };
+		C700B49F1ADB2292005AFCFD /* SwiftAddressBookHelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftAddressBookHelperMethods.swift; path = "../../../../Downloads/SwiftAddressBook-Swift_1.2_take2/Pod/Classes/SwiftAddressBookHelperMethods.swift"; sourceTree = "<group>"; };
+		C700B4A01ADB2292005AFCFD /* SwiftAddressBookPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftAddressBookPerson.swift; path = "../../../../Downloads/SwiftAddressBook-Swift_1.2_take2/Pod/Classes/SwiftAddressBookPerson.swift"; sourceTree = "<group>"; };
+		C700B4A11ADB2292005AFCFD /* SwiftAddressBookRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftAddressBookRecord.swift; path = "../../../../Downloads/SwiftAddressBook-Swift_1.2_take2/Pod/Classes/SwiftAddressBookRecord.swift"; sourceTree = "<group>"; };
+		C700B4A21ADB2292005AFCFD /* SwiftAddressBookSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftAddressBookSource.swift; path = "../../../../Downloads/SwiftAddressBook-Swift_1.2_take2/Pod/Classes/SwiftAddressBookSource.swift"; sourceTree = "<group>"; };
+		C700B4A31ADB2292005AFCFD /* SwiftAddressBookWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftAddressBookWrapper.swift; path = "../../../../Downloads/SwiftAddressBook-Swift_1.2_take2/Pod/Classes/SwiftAddressBookWrapper.swift"; sourceTree = "<group>"; };
 		C726F3861AD73A64008664D6 /* Livv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C726F38A1AD73A64008664D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C726F38B1AD73A64008664D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +116,14 @@
 		C73C368F1AD8FF4E00200066 /* InvitesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitesTableViewCell.swift; sourceTree = "<group>"; };
 		C73C36911AD90DE900200066 /* blankicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blankicon@2x.png"; path = "../../../blankicon@2x.png"; sourceTree = "<group>"; };
 		C73C36921AD90DE900200066 /* blankicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blankicon.png; path = ../../../blankicon.png; sourceTree = "<group>"; };
+		C75C38831ADA5038002C84CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C75C38851ADA5048002C84CF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C75C38871ADA5056002C84CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C75C38891ADA5060002C84CF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C75C388B1ADA5072002C84CF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C75C388D1ADA507C002C84CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C75C388F1ADA5082002C84CF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C75C38941ADA50A9002C84CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C772EF091AD74588004F1180 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C772EF0B1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideDrawerSectionHeaderView.swift; sourceTree = "<group>"; };
 		C772EF0D1AD747E1004F1180 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C75C38881ADA5056002C84CF /* CoreLocation.framework in Frameworks */,
 				C78318C01AD9B86B00526DBC /* Crashlytics.framework in Frameworks */,
 				974A4D8284D1BA096255FFA3 /* Pods_Livv.framework in Frameworks */,
 				C78318C11AD9B86B00526DBC /* Fabric.framework in Frameworks */,
@@ -155,6 +179,14 @@
 		51A0C9D630091A094A1EAB1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C75C38941ADA50A9002C84CF /* QuartzCore.framework */,
+				C75C388F1ADA5082002C84CF /* StoreKit.framework */,
+				C75C388D1ADA507C002C84CF /* Security.framework */,
+				C75C388B1ADA5072002C84CF /* MobileCoreServices.framework */,
+				C75C38891ADA5060002C84CF /* CoreGraphics.framework */,
+				C75C38871ADA5056002C84CF /* CoreLocation.framework */,
+				C75C38851ADA5048002C84CF /* CFNetwork.framework */,
+				C75C38831ADA5038002C84CF /* AudioToolbox.framework */,
 				C73C36811AD7C1AD00200066 /* libsqlite3.dylib */,
 				C73C367F1AD7C1A300200066 /* libz.dylib */,
 				C73C367D1AD7C19B00200066 /* SystemConfiguration.framework */,
@@ -171,6 +203,20 @@
 				6CAA55AD3D81B66DC01C244D /* Pods-Livv.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C700B49C1ADB2285005AFCFD /* SwiftAddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				C700B49D1ADB2292005AFCFD /* SwiftAddressBookDataStructures.swift */,
+				C700B49E1ADB2292005AFCFD /* SwiftAddressBookGroup.swift */,
+				C700B49F1ADB2292005AFCFD /* SwiftAddressBookHelperMethods.swift */,
+				C700B4A01ADB2292005AFCFD /* SwiftAddressBookPerson.swift */,
+				C700B4A11ADB2292005AFCFD /* SwiftAddressBookRecord.swift */,
+				C700B4A21ADB2292005AFCFD /* SwiftAddressBookSource.swift */,
+				C700B4A31ADB2292005AFCFD /* SwiftAddressBookWrapper.swift */,
+			);
+			name = SwiftAddressBook;
 			sourceTree = "<group>";
 		};
 		C726F37D1AD73A64008664D6 = {
@@ -198,6 +244,7 @@
 		C726F3881AD73A64008664D6 /* Livv */ = {
 			isa = PBXGroup;
 			children = (
+				C700B49C1ADB2285005AFCFD /* SwiftAddressBook */,
 				C73C36831AD7CE9600200066 /* CocoaLumberjack.swift */,
 				C73C36911AD90DE900200066 /* blankicon@2x.png */,
 				C73C36921AD90DE900200066 /* blankicon.png */,
@@ -357,6 +404,7 @@
 					};
 					C726F39A1AD73A64008664D6 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = BF98Z4WZZW;
 						TestTargetID = C726F3851AD73A64008664D6;
 					};
 				};
@@ -486,8 +534,11 @@
 				C772EF301AD74D8A004F1180 /* TagButtonViewCell.swift in Sources */,
 				C772EF0A1AD74588004F1180 /* SettingsViewController.swift in Sources */,
 				C772EF101AD74983004F1180 /* TheListiewController.swift in Sources */,
+				C700B4A41ADB2292005AFCFD /* SwiftAddressBookDataStructures.swift in Sources */,
 				C726F3BE1AD73FF7008664D6 /* RLMSupport.swift in Sources */,
+				C700B4AA1ADB2292005AFCFD /* SwiftAddressBookWrapper.swift in Sources */,
 				C726F3AE1AD73D65008664D6 /* TBQuadTree.m in Sources */,
+				C700B4A51ADB2292005AFCFD /* SwiftAddressBookGroup.swift in Sources */,
 				C726F38E1AD73A64008664D6 /* ViewController.swift in Sources */,
 				C772EF0E1AD747E1004F1180 /* MapViewController.swift in Sources */,
 				C726F3B71AD73E55008664D6 /* TBClusterAnnotationView.m in Sources */,
@@ -495,7 +546,10 @@
 				C7B62B7F1AD7780F00132E31 /* DrawerVisualState.swift in Sources */,
 				C726F3B11AD73DB7008664D6 /* TBCoordinateQuadTree.m in Sources */,
 				C772EF321AD74DE2004F1180 /* PrivateButtonTableViewCell.swift in Sources */,
+				C700B4A61ADB2292005AFCFD /* SwiftAddressBookHelperMethods.swift in Sources */,
 				C726F3B41AD73DFC008664D6 /* TBClusterAnnotation.m in Sources */,
+				C700B4A81ADB2292005AFCFD /* SwiftAddressBookRecord.swift in Sources */,
+				C700B4A71ADB2292005AFCFD /* SwiftAddressBookPerson.swift in Sources */,
 				C772EF0C1AD7461B004F1180 /* SideDrawerSectionHeaderView.swift in Sources */,
 				C73C36841AD7CE9600200066 /* CocoaLumberjack.swift in Sources */,
 				C726F38C1AD73A64008664D6 /* AppDelegate.swift in Sources */,
@@ -506,6 +560,7 @@
 				C7B62B7E1AD7780F00132E31 /* DrawerController.swift in Sources */,
 				C73C36701AD7A3A100200066 /* InstructionsTableCellView.swift in Sources */,
 				C7B62B7D1AD7780F00132E31 /* DrawerBarButtonItem.swift in Sources */,
+				C700B4A91ADB2292005AFCFD /* SwiftAddressBookSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +633,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "e59d4963-3036-4f07-9168-23f5a5af43f0";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -615,6 +671,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "e59d4963-3036-4f07-9168-23f5a5af43f0";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -631,12 +688,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/brentkirkland/Downloads/parse-library-1",
 				);
 				INFOPLIST_FILE = Livv/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e59d4963-3036-4f07-9168-23f5a5af43f0";
 				SWIFT_OBJC_BRIDGING_HEADER = "Livv/Livv-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -654,12 +712,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/brentkirkland/Downloads/parse-library-1",
 				);
 				INFOPLIST_FILE = Livv/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e59d4963-3036-4f07-9168-23f5a5af43f0";
 				SWIFT_OBJC_BRIDGING_HEADER = "Livv/Livv-Bridging-Header.h";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -669,6 +728,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -680,6 +741,7 @@
 				INFOPLIST_FILE = LivvTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Livv.app/Livv";
 			};
 			name = Debug;
@@ -688,6 +750,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -695,6 +759,7 @@
 				INFOPLIST_FILE = LivvTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Livv.app/Livv";
 			};
 			name = Release;

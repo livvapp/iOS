@@ -56,11 +56,12 @@ class TagButtonViewCell: UITableViewCell {
         //var titleHeight: CGFloat! = (button.frame.size.height as CGFloat!)
         //println(titleHeight)
         button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)
-        println(button.frame)
+        //button.autoresizingMask = .FlexibleWidth
+        //println(button.frame)
         
         contentView.addSubview(button)
         
-        count.frame = CGRect(x: self.frame.width + 15, y: 0, width: 30, height: contentView.frame.height)
+        count.frame = CGRect(x: self.frame.width - 40, y: 0, width: 30, height: contentView.frame.height)
         count.setTitle("\(countNumber)", forState: .Normal)
         count.addTarget(self, action: "countUpdate:", forControlEvents: .TouchUpInside)
         count.userInteractionEnabled = false
@@ -68,6 +69,7 @@ class TagButtonViewCell: UITableViewCell {
         count.setTitleColor(UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0), forState: .Normal)
         count.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Right
         count.titleLabel?.textAlignment = .Right
+        count.autoresizingMask = .FlexibleWidth
         contentView.addSubview(count)
     }
     

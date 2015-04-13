@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class InvitesTableViewCell: UITableViewCell {
     
     var button: UIButton! = UIButton()
@@ -59,12 +60,12 @@ class InvitesTableViewCell: UITableViewCell {
         name.autoresizingMask = .FlexibleWidth
         self.addSubview(name)
         
-        tags.frame = CGRectMake(80, 32, self.bounds.size.width - 20, 20)
+        tags.frame = CGRectMake(80, 31, self.bounds.size.width - 20, 20)
         tags.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
         tags.autoresizingMask = .FlexibleWidth
         self.addSubview(tags)
         
-        address.frame = CGRectMake(80, 53, self.bounds.size.width - 20, 20)
+        address.frame = CGRectMake(80, 51, self.bounds.size.width - 20, 20)
         address.font = UIFont(name: "HelveticaNeue-LightItalic", size: 14)
         address.autoresizingMask = .FlexibleWidth
         self.addSubview(address)

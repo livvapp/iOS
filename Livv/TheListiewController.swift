@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Parse
+import Bolts
 
 struct Invite {
     var name: String!
@@ -56,6 +58,11 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         println("Left did appear")
+        var current: PFInstallation = PFInstallation.currentInstallation()
+        if current.badge != 0 {
+            current.badge = 0
+            current.saveEventually()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -178,6 +185,14 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
         cell!.address.text = invites[indexPath.row].address
         cell!.tags.text = invites[indexPath.row].tags
         
+        if count(invites[indexPath.row].tags) > 33 {
+            cell!.tags.font = UIFont(name: "HelveticaNeue-Medium", size: 13)
+        }
+        
+        if count(invites[indexPath.row].tags) > 50 {
+            cell!.tags.font = UIFont(name: "HelveticaNeue-Medium", size: 9)
+        }
+        
         return cell!
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -212,9 +227,9 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
             println("JSON Data: \(json)")
             println("Error: \(error)")
             
-            if error == nil {
+            if error == nil{
                 var myJSON = JSON(json!)
-                println(myJSON)
+                //println(myJSON)
                 
                 self.refreshControl.endRefreshing()
                 
@@ -229,18 +244,28 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
                     
                     var host: String! = myJSON["feed"][x]["host"].stringValue
                     
-                    var length: UInt = Contacts.objectsWhere("phone = '\(host)' AND phone BEGINSWITH '1'").count
+                    var length: UInt = Contacts.objectsWhere("phone = '\(host)'").count
 
-                    var cntcts = Contacts.objectsWhere("phone = '\(host)' AND phone BEGINSWITH '1'")
+                    var cntcts = Contacts.objectsWhere("phone = '\(host)'")
+                    
+                    
                     
                     if length > 0 {
                         
-                        hostName = (cntcts[0] as! Contacts).name
+                        hostName = ((cntcts[0] as! Contacts).name as String!)
+                        println("host name is: \(hostName)")
+                    } else {
+                        
+                        hostName = myJSON["feed"][x]["name"].stringValue
                         
                     }
                     
-                    //var fullAddress = split(myJSON["address"].stringValue) {$0 == " "}
-                    address = "956 Camino Corto"
+                    var jsonAddress:String! = myJSON["feed"][x]["address"].stringValue
+                    println("try it out")
+                    println(myJSON["feed"][x]["address"].stringValue)
+                    println(jsonAddress)
+                    var fullAddress = split(jsonAddress){$0 == "^"}
+                    println(fullAddress.count)
                     
                     for var i: Int = 0; i < myJSON["feed"][x]["tags"].count; i++ {
                         
@@ -249,10 +274,18 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
                             tags = myJSON["feed"][x]["tags"][0].stringValue
                         } else {
                             
-                            tags = tags + ", " + myJSON["feed"][x]["tags"][0].stringValue
+                            tags = tags + ", " + myJSON["feed"][x]["tags"][i].stringValue
                         }
                         
                     }
+                    
+                    var jtime = myJSON["feed"][x]["timestamp"].intValue
+                    var jtimesec = jtime/1000
+                    
+                    var t: NSTimeInterval = NSTimeInterval(jtimesec)
+                    var date: NSDate = NSDate(timeIntervalSince1970: t)
+
+                    address = fullAddress[0] + " - " + "\(self.timeAgoSinceDate(date, numericDates: false))"
                     
                     location = CLLocationCoordinate2DMake(myJSON["feed"][x]["loc"]["coordinates"][1].doubleValue, myJSON["feed"][x]["loc"]["coordinates"][00].doubleValue)
                     
@@ -263,8 +296,12 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
                     println(location.latitude)
                     println(location.longitude)
                     
-                    self.invites.append(Invite(name: hostName, address: address, tags: tags, location: location))
-                    
+                    if self.invites.count > 0 {
+                        self.invites.insert(Invite(name: hostName, address: address, tags: tags, location: location), atIndex: 0)
+                    } else {
+                        
+                        self.invites.append(Invite(name: hostName, address: address, tags: tags, location: location))
+                    }
                 }
                 
                 self.tableView.reloadData()
@@ -275,6 +312,70 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
                 self.refreshControl.endRefreshing()
 
             }
+        }
+        
+    }
+    
+    func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
+        let calendar = NSCalendar.currentCalendar()
+        let unitFlags = NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitSecond
+        let now = NSDate()
+        let earliest = now.earlierDate(date)
+        let latest = (earliest == now) ? date : now
+        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: nil)
+        
+        if (components.year >= 2) {
+            return "\(components.year) years ago"
+        } else if (components.year >= 1){
+            if (numericDates){
+                return "1 year ago"
+            } else {
+                return "Last year"
+            }
+        } else if (components.month >= 2) {
+            return "\(components.month) months ago"
+        } else if (components.month >= 1){
+            if (numericDates){
+                return "1 month ago"
+            } else {
+                return "Last month"
+            }
+        } else if (components.weekOfYear >= 2) {
+            return "\(components.weekOfYear) weeks ago"
+        } else if (components.weekOfYear >= 1){
+            if (numericDates){
+                return "1 week ago"
+            } else {
+                return "Last week"
+            }
+        } else if (components.day >= 2) {
+            return "\(components.day) days ago"
+        } else if (components.day >= 1){
+            if (numericDates){
+                return "1 day ago"
+            } else {
+                return "Yesterday"
+            }
+        } else if (components.hour >= 2) {
+            return "\(components.hour) hours ago"
+        } else if (components.hour >= 1){
+            if (numericDates){
+                return "1 hour ago"
+            } else {
+                return "An hour ago"
+            }
+        } else if (components.minute >= 2) {
+            return "\(components.minute) minutes ago"
+        } else if (components.minute >= 1){
+            if (numericDates){
+                return "1 minute ago"
+            } else {
+                return "A minute ago"
+            }
+        } else if (components.second >= 3) {
+            return "\(components.second) seconds ago"
+        } else {
+            return "Just now"
         }
         
     }

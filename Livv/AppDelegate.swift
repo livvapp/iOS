@@ -12,10 +12,12 @@ import LogglyLogger_CocoaLumberjack
 import CocoaLumberjack
 import Fabric
 import Crashlytics
+import Parse
+import Bolts
 
 let ddLogLevel:DDLogLevel = DDLogLevel.Verbose
 
-let globalURL: String! = "http://livv.net"
+let globalURL: String! = "https://livv.net"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -61,6 +63,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Realm will automatically perform the migration and opening the Realm will succeed
         // i.e. RLMRealm.defaultRealm()
         
+        Parse.setApplicationId("TFSEFv9UAXROm6HyFRoomYfvRaPc59pdQxZ97ItC",
+            clientKey: "4gV8mMvwWMXiTUTeqkBSyGu9dLMn7ANG6DN5QZyZ")
+        
+        // Register for Push Notitications
+        if application.applicationState != UIApplicationState.Background {
+            // Track an app open here if we launch with a push, unless
+            // "content_available" was used to trigger a background push (introduced in iOS 7).
+            // In that case, we skip tracking here to avoid double counting the app-open.
+            
+            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
+            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            var noPushPayload = false;
+            if let options = launchOptions {
+                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
+            }
+            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+            }
+        }
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+        
+            application.registerForRemoteNotifications()
+        } 
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         
@@ -82,6 +108,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        println(deviceToken)
+        installation.setDeviceTokenFromData(deviceToken)
+        installation.saveInBackground()
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        if error.code == 3010 {
+            println("Push notifications are not supported in the iOS Simulator.")
+        } else {
+            println("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
+        }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
+        if application.applicationState == UIApplicationState.Inactive {
+            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+        }
     }
     
     func switchToLogin() -> Void {

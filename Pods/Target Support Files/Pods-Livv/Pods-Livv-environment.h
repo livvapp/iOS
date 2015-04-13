@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_Alamofire 2
 #define COCOAPODS_VERSION_PATCH_Alamofire 0
 
+// Bolts
+#define COCOAPODS_POD_AVAILABLE_Bolts
+#define COCOAPODS_VERSION_MAJOR_Bolts 1
+#define COCOAPODS_VERSION_MINOR_Bolts 1
+#define COCOAPODS_VERSION_PATCH_Bolts 4
+
 // CocoaLumberjack
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack 2
@@ -95,6 +101,12 @@
 #define COCOAPODS_VERSION_MAJOR_LogglyLogger_CocoaLumberjack_Logger 2
 #define COCOAPODS_VERSION_MINOR_LogglyLogger_CocoaLumberjack_Logger 0
 #define COCOAPODS_VERSION_PATCH_LogglyLogger_CocoaLumberjack_Logger 2
+
+// Parse
+#define COCOAPODS_POD_AVAILABLE_Parse
+#define COCOAPODS_VERSION_MAJOR_Parse 1
+#define COCOAPODS_VERSION_MINOR_Parse 7
+#define COCOAPODS_VERSION_PATCH_Parse 1
 
 // Realm
 #define COCOAPODS_POD_AVAILABLE_Realm

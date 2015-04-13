@@ -60,7 +60,7 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
         //create the 'Create' button
         var usernameCreate: UIButton = UIButton(frame: CGRectMake(5, self.frame.size.height-55, self.frame.size.width-10, 50))
         usernameCreate.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
-        usernameCreate.setTitle("Create", forState: UIControlState.Normal)
+        usernameCreate.setTitle("Confirm", forState: UIControlState.Normal)
         usernameCreate.addTarget(self, action: "create:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(usernameCreate)
         
@@ -72,12 +72,23 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
         self.addSubview(usernameLabel)
         
         var usernameExplanationLabel: UILabel = UILabel(frame: CGRectMake(20, 27, self.frame.size.width-40, 30))
-        usernameExplanationLabel.text = "Help your friends identify invites."
+        usernameExplanationLabel.text = "Help your friends identify invites"
         usernameExplanationLabel.font = UIFont(name: "HelveticaNeue",
             size: 9.0)
         usernameExplanationLabel.numberOfLines = 2
         usernameExplanationLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(usernameExplanationLabel)
+        
+        let users = User.allObjects()
+        let user = users[UInt(0)] as! User
+        var length: UInt = Contacts.objectsWhere("phone = '\(user.phone)' AND phone BEGINSWITH '1'").count
+        var cntcts = Contacts.objectsWhere("phone = '\(user.phone)' AND phone BEGINSWITH '1'")
+        
+        if length > 0 {
+            usernameTextField.text = (cntcts[0] as! Contacts).name
+        }
+        
+        
         
     }
     
@@ -94,6 +105,11 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
                 self.endEditing(true)
                 //self.removeFromSuperview()
                 
+                self.mapClass.tableView = TagSelectorView(frame: CGRectMake(0, 72, self.mapClass.view.frame.width, self.mapClass.view.frame.height - 72), mapClass: self.mapClass)
+                self.mapClass.view.addSubview(self.mapClass.tableView)
+                
+                self.removeFromSuperview()
+                
                 println("success")
             }))
         
@@ -101,7 +117,7 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
     
     func openWindow(renderView: MapViewController){
         
-        UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.frame =  CGRectMake(50, (renderView.view.frame.height - 216)/2 - 85, renderView.view.frame.size.width - 100, 170)
             
@@ -180,10 +196,8 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
                 println("The lastTag is: \(user.lastTag)")
                 println("it works")
                 
-                self.mapClass.tableView = TagSelectorView(frame: CGRectMake(0, 72, self.mapClass.view.frame.width, self.mapClass.view.frame.height - 72), mapClass: self.mapClass)
-                self.mapClass.view.addSubview(self.mapClass.tableView)
+                //self.closeWindow(self.mapClass)
                 
-                self.removeFromSuperview()
                 //close window
                 //show bottom screen button
                 

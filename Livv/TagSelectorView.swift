@@ -17,6 +17,7 @@
 import Foundation
 import Realm
 import Alamofire
+import SwiftyJSON
 
 struct Tags {
     var title: String!
@@ -34,7 +35,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
     var addTag: UITextField!
     var addTagBackground: UIView!
     var points: UILabel!
-    var pointsNumber: Int! = 100
+    var pointsNumber: Int! = 19
     
     //address bar at bottom
     var done: UIButton!
@@ -45,7 +46,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
     var searchedTags: [Tags] = []
     var tags: [Tags] = []
     var selectedTags: [String] = []
-    var instructions: [String] = [" Hello, Hello!", " Set the trend by adding tags", " Top tag = event name", " Use @ to invite freinds", " Use # to create private tags", " Only invites see private tags", " Points are limited", " Send invites = more points", " Attend invites = more points", " Upvote correct tags = more points", " Be awesome = more points"]
+    var instructions: [String] = [" Hello, Hello!", " Set the trend by adding tags", " Top tag = event name", " Use @ to invite freinds", " Use # to create private tags", " Only invites see private tags", " Points are limited", " Upvote correct tags = points", " Send invites = more points", " Attend invites = more points", " Be awesome = most points"]
     
     //mapcontroller
     var mapClass: MapViewController!
@@ -134,24 +135,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         tableView.delegate = self
         self.addSubview(tableView)
         
-//        explanation = UIView(frame: CGRectMake(10, 41, self.frame.size.width-20, self.frame.size.height - 91))
-//        explanation.backgroundColor = UIColor.clearColor()
-//        explanation.layer.cornerRadius = 2
-//        explanation.hidden = false
-//        self.addSubview(explanation)
-//        
-//        pioneer = UILabel(frame: CGRectMake(0, 0, explanation.frame.size.width, explanation.frame.size.height - 20))
-//        pioneer.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 0.9)
-//        pioneer.font = UIFont(name: "HelveticaNeue-Light", size: 22)
-//        pioneer.numberOfLines = 1
-//        pioneer.textAlignment = .Left
-////        pioneer.text = "You're the first one!\nSet the trend by adding tags.\nThe trending tag becomes the event name.\nUse @ to invite friends.\nUse # to create private tags. Private tags are only shared with invites.\nTag wisely as you have limited points. Inviting friends, attending invites, and voting on correct tags will increase your point total."
-//        //pioneer.text = "You're the first one!"
-//        pioneer.sizeToFit()
-//        pioneer.textColor = UIColor.whiteColor()
-//        pioneer.layer.cornerRadius = 2
-//        explanation.addSubview(pioneer)
-        
         var singletap: UITapGestureRecognizer  = UITapGestureRecognizer(target: self, action: "singleTap:")
         singletap.numberOfTapsRequired = 1
         self.addGestureRecognizer(singletap)
@@ -164,8 +147,51 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         self.addSubview(refresh)
         
         //getSelectedTags()
+        
         setUpExistingTags()
-
+        getScore()
+    }
+    
+    func getScore(){
+        
+        var eventt: RLMResults = Event.objectsWhere("address = %@", self.mapClass.address)
+        if ((Event.objectsWhere("address = %@", self.mapClass.address).count > 0)){
+            
+            var pp: Int! = (eventt[0] as! Event).points
+            self.pointsNumber = pp
+            self.points.text = String(self.pointsNumber)
+            
+        } else {
+            
+            let users = User.allObjects()
+            let user = users[UInt(0)] as! User
+            
+            let URL = NSURL(string:"\(globalURL)/api/users/me/score")
+            let mutableURLRequest = NSMutableURLRequest(URL: URL!)
+            mutableURLRequest.HTTPMethod = "GET"
+            
+            var JSONSerializationError: NSError? = nil
+            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
+            
+            Alamofire.request(mutableURLRequest).validate(statusCode: 200..<300).responseJSON { (req, res, json, error) in
+                
+                println("Request: \(req)")
+                println("Response: \(res)")
+                println("JSON Data: \(json)")
+                println("Error: \(error)")
+                
+                if error == nil {
+                    
+                    var myJSON = JSON(json!)
+                    self.pointsNumber = myJSON["score"].intValue
+                    self.points.text = myJSON["score"].stringValue
+                    
+                    
+                }
+                
+            }
+        }
     }
     
     func decrementAPoint(){
@@ -495,6 +521,8 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                 var newString = (actualString as NSString).substringFromIndex(1)
                 
                 if Contacts.objectsWhere("name CONTAINS[c] '\(newString)'").count > 0 {
+                    let users = User.allObjects()
+                    let user = users[UInt(0)] as! User
                     
                     self.searchedTags = []
                     
@@ -507,11 +535,13 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                         //check if it already a selected tag
                         
                         //println((cntcts[i] as Contacts).phone)
-                        
-                        var tag = Tags(title: (cntcts[i] as! Contacts).name, isPrivate: false, isContact: true, phone: (cntcts[i] as! Contacts).phone, isSelected: false, count: 0, userCount: 0)
-                        
-                        searchedTags.append(tag)
-                        
+                        //println(user.phone)
+                        if (cntcts[i] as! Contacts).phone != user.phone {
+                            
+                            var tag = Tags(title: (cntcts[i] as! Contacts).name, isPrivate: false, isContact: true, phone: (cntcts[i] as! Contacts).phone, isSelected: false, count: 0, userCount: 0)
+                            
+                            searchedTags.append(tag)
+                        }
                     }
                     
                     self.tableView.reloadData()
@@ -712,7 +742,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                     
                     }, completion: ({ success in
                         
-        
+                        self.mapClass.setUpVotes()
                         self.removeFromSuperview()
                         
                     }))

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7D33310C3CA3FAFEFB3509D6"
+               BlueprintIdentifier = "EA631C9F223D0D372D7CF4EC"
                BuildableName = "LogglyLogger_CocoaLumberjack.framework"
                BlueprintName = "Pods-Livv-LogglyLogger-CocoaLumberjack"
                ReferencedContainer = "container:Pods.xcodeproj">

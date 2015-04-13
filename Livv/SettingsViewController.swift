@@ -8,6 +8,9 @@
 
 import UIKit
 import Realm
+import Alamofire
+import Parse
+import SwiftyJSON
 
 enum DrawerSection: Int {
     case User
@@ -18,7 +21,8 @@ enum DrawerSection: Int {
 class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView: UITableView!
-    //var separatorLineView: UIView! = UIView()
+    var score: String!
+
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -29,14 +33,10 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
         fatalError("init(coder:) has not been implemented")
     }
     
-    //    override func viewWillAppear(animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        println("Left will appear")
-    //    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         println("Left did appear")
+        self.tableView.reloadData()
         
     }
     
@@ -52,6 +52,13 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let users = User.allObjects()
+        let user = users[UInt(0)] as! User
+        
+        var installation: PFInstallation = PFInstallation.currentInstallation()
+        installation["phone"] = user.phone as String
+        installation.saveInBackground()
         
         self.restorationIdentifier = "SettingsViewController"
         
@@ -77,6 +84,31 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.scrollEnabled = false
         //self.tableView.rowHeight = 40
+        
+        let URL = NSURL(string:"\(globalURL)/api/users/me/score")
+        let mutableURLRequest = NSMutableURLRequest(URL: URL!)
+        mutableURLRequest.HTTPMethod = "GET"
+        
+        var JSONSerializationError: NSError? = nil
+        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
+        
+        Alamofire.request(mutableURLRequest).validate(statusCode: 200..<300).responseJSON { (req, res, json, error) in
+            
+            println("Request: \(req)")
+            println("Response: \(res)")
+            println("JSON Data: \(json)")
+            println("Error: \(error)")
+            
+            if error == nil {
+                
+                var myJSON = JSON(json!)
+                self.score = myJSON["score"].stringValue
+                
+                
+            }
+            
+        }
         
         setupRightMenuButton()
         
@@ -157,7 +189,8 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
                 cell.addSubview(separatorLineView1)
                 
             } else {
-                cell.textLabel?.text = "UCSB"
+                
+                cell.textLabel?.text = score
                 cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
             }
             
@@ -244,6 +277,7 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
             realm.beginWriteTransaction()
             realm.deleteAllObjects()
             realm.commitWriteTransaction()
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "step")
             (UIApplication.sharedApplication().delegate as! AppDelegate).switchToLogin()
         default:
             break
