@@ -19,7 +19,7 @@ class TagButtonViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //self.commonSetup()
+
     }
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -29,7 +29,6 @@ class TagButtonViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.view = view
         self.theTag = tag
-        //self.title = title
         countNumber = tag.count + tag.userCount
         button.setTitle(tag.title, forState: .Normal)
         self.commonSetup()
@@ -46,19 +45,13 @@ class TagButtonViewCell: UITableViewCell {
     func commonSetup(){
         
         button.setTitleColor(UIColor(red: 50/255, green: 255/255, blue: 255/255, alpha: 1.0), forState: .Normal)
-        //button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         button.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 0.9)
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 22)
         button.sizeToFit()
         button.layer.cornerRadius = 2
         var titleWidth: CGFloat! = (button.frame.size.width as CGFloat!) + 10
-        //println(button.titleLabel?.frame.size.width)
-        //var titleHeight: CGFloat! = (button.frame.size.height as CGFloat!)
-        //println(titleHeight)
         button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)
-        //button.autoresizingMask = .FlexibleWidth
-        //println(button.frame)
-        
+
         contentView.addSubview(button)
         
         count.frame = CGRect(x: self.frame.width - 40, y: 0, width: 30, height: contentView.frame.height)
@@ -83,8 +76,7 @@ class TagButtonViewCell: UITableViewCell {
             
             theTag.userCount = theTag.userCount + 1
             view.decrementAPoint()
-            
-            //update outside
+
         }
     }
     
@@ -101,7 +93,6 @@ class TagButtonViewCell: UITableViewCell {
                 button.setTitleColor(UIColor.blackColor(), forState: .Normal)
                 button.backgroundColor = UIColor(red: 50/255, green: 255/255, blue: 255/255, alpha: 0.9)
                 
-                //point counter
                 theTag.userCount = theTag.userCount + 1
                 countNumber = countNumber + 1
                 count.setTitle("\(countNumber)", forState: .Normal)
@@ -115,7 +106,7 @@ class TagButtonViewCell: UITableViewCell {
                     self.view.tags.insert(theTag, atIndex: 0)
                     self.view.searchedTags = []
                 }
-                //reload data?
+
                 self.view.selectedTags.append(theTag.title)
                 
                 count.setTitleColor(UIColor(red: 50/255, green: 255/255, blue: 255/255, alpha: 1.0), forState: .Normal)
@@ -130,10 +121,8 @@ class TagButtonViewCell: UITableViewCell {
                 }
             }
             
-            //second selection
+
         } else if button.backgroundColor == UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 0.89) {
-            
-            println("reselected")
             
             if view.pointsNumber > 0 {
                 
@@ -153,7 +142,6 @@ class TagButtonViewCell: UITableViewCell {
                 
                 self.view.selectedTags.append(theTag.title)
                 self.view.tableView.reloadData()
-                println("selected tags are \(self.view.selectedTags)")
                 
                 if self.view.selectedTags.count != 0 {
                     
@@ -189,8 +177,6 @@ class TagButtonViewCell: UITableViewCell {
                 
             }
             
-            println("selected tags are \(self.view.selectedTags)")
-            
             if self.view.selectedTags.count == 0 {
                 
                 self.view.done.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -199,8 +185,5 @@ class TagButtonViewCell: UITableViewCell {
                 self.view.fitToSizeDone()
             }
         }
-        
-        
-    }
-    
+    } 
 }

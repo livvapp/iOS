@@ -73,9 +73,6 @@ class InvitesTableViewCell: UITableViewCell {
     
     func map(){
         
-        //println("taptap")
-        
-        
         let center = MapViewController()
         center.showSplashScreen = false
         center.inviteLocation = self.invite.location

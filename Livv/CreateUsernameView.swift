@@ -110,7 +110,6 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
                 
                 self.removeFromSuperview()
                 
-                println("success")
             }))
         
     }
@@ -124,8 +123,6 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
             }, completion: ({ success in
                 
                 println("Window did appear")
-                //self.usernameTextField.becomeFirstResponder()
-                //self.submittedTag = tag
                 self.mapClass = renderView
                 
             }))
@@ -133,18 +130,17 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        //println("Text field working")
         if (usernameTextField.text != "" && usernameTextField.text != nil){
             
-            //self.removeFromSuperview()
             submitUsername()
             
             return false
             
+        } else {
+            
+            return true
         }
-        println("Text field ain't working")
-        return true
+
     }
     
     func create(sender: UIButton!){
@@ -190,16 +186,6 @@ class CreateUsernameView: UIView,  UITextFieldDelegate {
                 user.username = self.usernameTextField.text
                 realm.commitWriteTransaction()
                 
-                println("The user is: \(user.username)")
-                println("The token is: \(user.token)")
-                println("The phone is: \(user.phone)")
-                println("The lastTag is: \(user.lastTag)")
-                println("it works")
-                
-                //self.closeWindow(self.mapClass)
-                
-                //close window
-                //show bottom screen button
                 
             }else {
                 

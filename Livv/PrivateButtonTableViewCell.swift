@@ -10,8 +10,6 @@ import Foundation
 
 class PrivateButtonTableViewCell: TagButtonViewCell {
     
-    //let theTag: Tags!
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -22,7 +20,6 @@ class PrivateButtonTableViewCell: TagButtonViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?, view: TagSelectorView, tag: Tags) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         button.setTitle(tag.title, forState: .Normal)
-        //super.title = tag.title
         self.theTag = tag
         super.countNumber = tag.count + tag.userCount
         super.view = view
@@ -39,9 +36,7 @@ class PrivateButtonTableViewCell: TagButtonViewCell {
         button.sizeToFit()
         button.layer.cornerRadius = 2
         var titleWidth: CGFloat! = (button.frame.size.width as CGFloat!) + 10
-        //var titleHeight: CGFloat! = (button.titleLabel?.frame.size.height as CGFloat!) + 5
         button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)
-        //button.autoresizingMask = .FlexibleWidth
         contentView.addSubview(button)
         
         count.frame = CGRect(x: self.frame.width - 40, y: 0, width: 30, height: contentView.frame.height)
@@ -129,7 +124,6 @@ class PrivateButtonTableViewCell: TagButtonViewCell {
                 
                 super.view.selectedTags.append("#\(theTag.title)")
                 super.view.tableView.reloadData()
-                println("selected tags are \(super.view.selectedTags)")
                 
                 if self.view.selectedTags.count != 0 {
                     
@@ -139,7 +133,6 @@ class PrivateButtonTableViewCell: TagButtonViewCell {
                     self.view.fitToSizeDone()
                 }
             }
-            
         }
         else {
             theTag.isSelected = false
@@ -173,13 +166,6 @@ class PrivateButtonTableViewCell: TagButtonViewCell {
                 self.view.done.setTitle("Cancel", forState: UIControlState.Normal)
                 self.view.fitToSizeDone()
             }
-            
-            println("selected tags are \(super.view.selectedTags)")
-            
-            
         }
-        
-        
     }
-    
 }

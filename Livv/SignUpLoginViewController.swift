@@ -667,18 +667,14 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     
                     NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "step")
                     
-                    println(JSON(json!))
-                    
                     var myJSON = JSON(json!)
-                    
-                    //write the user to the database so the user can find it
+
                     let realm = RLMRealm.defaultRealm()
                     realm.beginWriteTransaction()
                     realm.deleteAllObjects()
                     
                     let newUser = User()
-                    
-                    //newUser.email = self.emailTextField.text
+
                     newUser.token = myJSON["token"].string!
                     newUser.phone = "1\(phone)"
                     
@@ -686,8 +682,6 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     realm.commitWriteTransaction()
                     
                     self.getUsername()
-                    
-                    
                     
                 }else {
                     
@@ -698,12 +692,8 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     self.error.hidden = false
                     self.error.text = "Oops! Wrong code!"
                 }
-                
             }
-            
-            
         }
-        
     }
     
     func getUsername(){

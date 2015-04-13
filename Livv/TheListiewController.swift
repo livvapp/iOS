@@ -90,14 +90,10 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
         let font = UIFont(name: "HelveticaNeue-Light", size: 22)
         if let font = font {
             self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)]
-            //self.navigationController?.navigationBar.setTitleVerticalPositionAdjustment(4.5, forBarMetrics: .Default)
         }
         self.tableView = UITableView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height - (self.navigationController?.navigationBar.frame.height as CGFloat! + 20)), style: .Plain)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        println(self.view.frame)
-        println(self.tableView.frame)
         
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.rowHeight = 80
@@ -114,7 +110,6 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
         label.font = font
         label.textColor = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
         label.textAlignment = .Center
-        //label.sizeToFit()
         self.view.addSubview(label)
         label.hidden = true
         
@@ -208,16 +203,13 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
         let users = User.allObjects()
         let user = users[UInt(0)] as! User
         
-        //let parameters = [ "tag" : user.lastTag]
-        
         let URL = NSURL(string:"\(globalURL)/api/users/me/feed")
         let mutableURLRequest = NSMutableURLRequest(URL: URL!)
         mutableURLRequest.HTTPMethod = "GET"
         
         var JSONSerializationError: NSError? = nil
-        //mutableURLRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: &JSONSerializationError)
+
         mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        //mutableURLRequest.setValue("\(user.lastTag)", forHTTPHeaderField: "Tag")
         mutableURLRequest.setValue("Bearer \(user.token)", forHTTPHeaderField: "Authorization")
         
         Alamofire.request(mutableURLRequest).validate(statusCode: 200..<300).responseJSON { (req, res, json, error) in
@@ -229,7 +221,6 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
             
             if error == nil{
                 var myJSON = JSON(json!)
-                //println(myJSON)
                 
                 self.refreshControl.endRefreshing()
                 
@@ -253,19 +244,12 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
                     if length > 0 {
                         
                         hostName = ((cntcts[0] as! Contacts).name as String!)
-                        println("host name is: \(hostName)")
                     } else {
-                        
                         hostName = myJSON["feed"][x]["name"].stringValue
-                        
                     }
                     
                     var jsonAddress:String! = myJSON["feed"][x]["address"].stringValue
-                    println("try it out")
-                    println(myJSON["feed"][x]["address"].stringValue)
-                    println(jsonAddress)
                     var fullAddress = split(jsonAddress){$0 == "^"}
-                    println(fullAddress.count)
                     
                     for var i: Int = 0; i < myJSON["feed"][x]["tags"].count; i++ {
                         
@@ -278,7 +262,6 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
                         }
                         
                     }
-                    
                     var jtime = myJSON["feed"][x]["timestamp"].intValue
                     var jtimesec = jtime/1000
                     
@@ -288,13 +271,6 @@ class TheListiewController: ViewController, UITableViewDelegate, UIScrollViewDel
                     address = fullAddress[0] + " - " + "\(self.timeAgoSinceDate(date, numericDates: false))"
                     
                     location = CLLocationCoordinate2DMake(myJSON["feed"][x]["loc"]["coordinates"][1].doubleValue, myJSON["feed"][x]["loc"]["coordinates"][00].doubleValue)
-                    
-                    
-                    println(hostName)
-                    println(address)
-                    println(tags)
-                    println(location.latitude)
-                    println(location.longitude)
                     
                     if self.invites.count > 0 {
                         self.invites.insert(Invite(name: hostName, address: address, tags: tags, location: location), atIndex: 0)

@@ -79,10 +79,6 @@ class ContactButtonTableViewCell: TagButtonViewCell {
             var r: CGFloat! = CGFloat(((arc4random_uniform(255))))
             var b: CGFloat! = CGFloat(((arc4random_uniform(255))))
             
-            println(g)
-            println(r)
-            println(b)
-            
             count.setTitleColor(UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1.0), forState: .Normal)
         }
     }
@@ -120,9 +116,6 @@ class ContactButtonTableViewCell: TagButtonViewCell {
                 var r: CGFloat! = CGFloat(((arc4random_uniform(255))))
                 var b: CGFloat! = CGFloat(((arc4random_uniform(255))))
                 
-                println(g)
-                println(r)
-                println(b)
                 
                 count.setTitleColor(UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1.0), forState: .Normal)
                 
@@ -153,10 +146,6 @@ class ContactButtonTableViewCell: TagButtonViewCell {
                 var g: CGFloat! = CGFloat(((arc4random_uniform(255))))
                 var r: CGFloat! = CGFloat(((arc4random_uniform(255))))
                 var b: CGFloat! = CGFloat(((arc4random_uniform(255))))
-                
-                println(g)
-                println(r)
-                println(b)
                 
                 count.setTitleColor(UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1.0), forState: .Normal)
                 
@@ -210,7 +199,6 @@ class ContactButtonTableViewCell: TagButtonViewCell {
                 self.view.fitToSizeDone()
             }
             
-            println("selected tags are \(super.view.selectedTags)")
         }
         
         

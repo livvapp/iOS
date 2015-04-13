@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Livv/MapViewController.swift"
-            timestampString = "450520652.114281"
+            timestampString = "450596717.346182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
             landmarkName = "updateMapViewAnnotationsWithAnnotations(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Livv/MapViewController.swift"
-            timestampString = "450520652.114281"
+            timestampString = "450596717.346182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
             landmarkName = "updateMapViewAnnotationsWithAnnotations(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Livv/MapViewController.swift"
-            timestampString = "450520652.114281"
+            timestampString = "450596717.346182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
             landmarkName = "updateMapViewAnnotationsWithAnnotations(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Livv/MapViewController.swift"
-            timestampString = "450520652.114281"
+            timestampString = "450596717.346182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "598"
-            endingLineNumber = "598"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
             landmarkName = "updateMapViewAnnotationsWithAnnotations(_:)"
             landmarkType = "5">
          </BreakpointContent>

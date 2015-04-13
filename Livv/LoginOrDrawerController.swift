@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Realm
 
 public class LoginOrDrawerController: UIWindow {
     
@@ -33,6 +34,11 @@ public class LoginOrDrawerController: UIWindow {
     
     public func changeRoot(window: UIWindow!){
         
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            self.getContactNames()
+        }
+        
         window.rootViewController = getDrawer(window)
         
         window.backgroundColor = UIColor.whiteColor()
@@ -43,6 +49,7 @@ public class LoginOrDrawerController: UIWindow {
     }
     
     public func setLogin(window: UIWindow!){
+
         
         window.tintColor = UIColor.whiteColor()
         
@@ -82,6 +89,73 @@ public class LoginOrDrawerController: UIWindow {
         
         
         return drawerController
+        
+    }
+    
+    //ADDRESS BOOK ACCESS FOR FRIENDS
+    //update the many cases of contacts in the future
+    
+    func getContactNames() {
+        
+        swiftAddressBook?.requestAccessWithCompletion({ (success, error) -> Void in
+            if success {
+                
+                let users = User.allObjects()
+                let user = users[UInt(0)] as! User
+                
+                if let people = swiftAddressBook?.allPeople {
+                    for person in people {
+                        //                        NSLog("%@", person.names?.map( {$0.value} ))
+                        
+                        if (person.firstName != nil){
+                            
+                            let name: String!
+                            
+                            if person.lastName != nil {
+                                
+                                name = "\(person.firstName as String!) \(person.lastName as String!)"
+                                
+                            }
+                            else {
+                                name = "\(person.firstName as String!)"
+                                
+                            }
+                            
+                            if let personNumbers = person.phoneNumbers {
+                                let numbers = (personNumbers.map {number in "\(number.value)"})
+                                
+                                let personNumber = personNumbers[0]
+                                let characterSet = NSCharacterSet(charactersInString: "()-+ ")
+                                var phone = (personNumber.value.componentsSeparatedByCharactersInSet(characterSet) as NSArray).componentsJoinedByString("")
+                                if !phone.hasPrefix("1") {
+                                    phone = ("1\(phone)")
+                                }
+                                
+                                if count(phone) == 11 {
+                                    
+                                    if (Contacts.objectsWhere("phone = '\(phone)'").count < 1 && phone != user.phone) {
+                                        
+                                        let contact = Contacts()
+                                        let realm = RLMRealm.defaultRealm()
+                                        realm.beginWriteTransaction()
+                                        contact.name = name
+                                        contact.phone = phone
+                                        realm.addObject(contact)
+                                        realm.commitWriteTransaction()
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                DDLogVerbose("Contact books were not accessed", level: ddLogLevel, asynchronous: true)
+            }
+        })
         
     }
     

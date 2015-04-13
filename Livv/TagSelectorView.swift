@@ -339,10 +339,8 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                     return cell
                     
                 }
-                    // if it's a normal tag -> cyan dude
+
                 else{
-                    
-                    //println("cyan dude")
                     
                     let cellID = searchedTags[indexPath.row].title
                     var cell:TagButtonViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? TagButtonViewCell
@@ -352,7 +350,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                         cell = TagButtonViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID, view: self, tag: searchedTags[indexPath.row])
                         
                         cell.backgroundColor = UIColor.clearColor()
-                        //println("cyan dudee")
                         cell.selectionStyle = .None
                         cell.backgroundView = nil
                         cell.contentView.backgroundColor = UIColor.clearColor()
@@ -362,11 +359,9 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                     return cell
                     
                 }
-                
-                // when a tag has been added and unadded it goes here
+
             } else {
-                
-                //if it's a contact -> yellow dude
+
                 if tags[indexPath.row - searchedTags.count].isContact == true && tags[indexPath.row - searchedTags.count].isPrivate == false {
                     
                     let cellID = tags[indexPath.row - searchedTags.count].title
@@ -389,12 +384,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                     //if it's a private tag -> pink dude
                 else if (tags[indexPath.row - searchedTags.count].isContact == false && tags[indexPath.row - searchedTags.count].isPrivate == true) {
                     
-                    //println("try it out3")
-                    //println(tags[indexPath.row - searchedTags.count].isContact)
-                    //println(tags[indexPath.row - searchedTags.count].isPrivate)
-                    //println(tags[indexPath.row - searchedTags.count].title)
-                    //println(tags[indexPath.row - searchedTags.count].phone)
-                    
                     let cellID = tags[indexPath.row - searchedTags.count].title
                     var cell:PrivateButtonTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? PrivateButtonTableViewCell
                     
@@ -413,8 +402,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                     
                 }
                 else{
-                    
-                    //println("try it out4")
                     
                     let cellID = tags[indexPath.row - searchedTags.count].title
                     var cell:TagButtonViewCell! = tableView.dequeueReusableCellWithIdentifier(cellID) as? TagButtonViewCell
@@ -477,7 +464,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         
         addTag?.sizeToFit()
         addTagBackground.frame = CGRect(x: 10, y: 0, width: addTag.frame.size.width + 10, height:  addTag.frame.size.height + 5)
-        println(addTagBackground.frame)
         
     }
     
@@ -498,11 +484,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         
         var actualString: String! = ""
         
-        //println("The textfield text is: \(textField.text)")
-        //println("The textfield plus string is: \(textField.text + string)")
-        //println("The string is: \(string)")
-        //println(range)
-        
         if string == "" {
             
             actualString = textField.text.substringWithRange(Range<String.Index>(start: textField.text.startIndex, end: advance(textField.text.endIndex, -1)))
@@ -511,8 +492,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
             
             actualString = textField.text + string
         }
-        
-        //println("actual string \(actualString)")
         
         if count(actualString) > 1{
             
@@ -527,15 +506,10 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                     self.searchedTags = []
                     
                     var length: UInt = Contacts.objectsWhere("name CONTAINS[c] '\(newString)' AND phone BEGINSWITH '1'").count
-                    ////println(length)
                     var cntcts = Contacts.objectsWhere("name CONTAINS[c] '\(newString)' AND phone BEGINSWITH '1'")
                     
                     for var i: UInt = 0; i < length; i++ {
                         
-                        //check if it already a selected tag
-                        
-                        //println((cntcts[i] as Contacts).phone)
-                        //println(user.phone)
                         if (cntcts[i] as! Contacts).phone != user.phone {
                             
                             var tag = Tags(title: (cntcts[i] as! Contacts).name, isPrivate: false, isContact: true, phone: (cntcts[i] as! Contacts).phone, isSelected: false, count: 0, userCount: 0)
@@ -549,8 +523,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                 
             }
             else if (actualString as NSString).substringToIndex(1) == "#" {
-                
-                //println("try it out")
                 
                 var newString = (actualString as NSString).substringFromIndex(1)
                 
@@ -568,8 +540,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                 
             }
             else {
-                
-                //println("try it out2")
                 
                 if searchedTags.count > 0 {
                     
@@ -606,7 +576,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
     
     func singleTap(sender: UITapGestureRecognizer!){
         
-        println("TAPPPPPP")
         addTag.resignFirstResponder()
         
     }
@@ -615,34 +584,24 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
     
     func setUpExistingTags(){
         
-        //disable the button
-        
-        println(self.mapClass.userLocation.coordinate.latitude)
-        println(self.mapClass.userLocation.coordinate.longitude)
-        
         var eventt: RLMResults = Event.objectsWhere("address = %@", self.mapClass.address)
         if ((Event.objectsWhere("address = %@", self.mapClass.address).count != 0) &&  eventt[0] != nil ){
             
             var tempTag = tags
             
-            //loop through and look for selected Tags only
-            
-            
             var event = eventt[0] as! Event
             
             for var x = 0; x < tags.count; x++ {
-                println("tag: \(tags[x].title)")
-                println("selection: \(tags[x].isSelected)")
+
                 if tags[x].isSelected == false{
-                    println("removed: \(tags[x].title)")
+
                     tags.removeAtIndex(x)
                     x--
                 }
                 
             }
             for var i = 0; i < Int(event.tags.count); i++ {
-                
-                //this if statement counteracts when the array is empty and we don't want to insert at position 0
+            
                 if tags.count > 0 {
                     
                     if (event.tags[UInt(i)].name as NSString).substringToIndex(1) == "#" {
@@ -676,7 +635,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
             }
             
             tags.sort({$0.count > $1.count})
-            //println(tags)
+
             self.tableView.reloadData()
             
         } else {
@@ -731,10 +690,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
             
             if error == nil {
                 
-                //close window
-                
                 self.mapClass.mapView.showsUserLocation = true
-                println("success")
                 
                 UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                     
@@ -770,8 +726,6 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
                 //self.tableView.closeWindow(self.tableView)
                 alert.dismissWithClickedButtonIndex(0, animated: true)
                 alert.show()
-                println("there was an error")
-                
                 
             }
             
