@@ -42,7 +42,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     var inviteLocation: CLLocationCoordinate2D!
     
     var loadAddress: String!
-
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -69,10 +69,10 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         
-
+        
         mapView = MKMapView(frame: CGRectMake(0,0, self.view.frame.width, self.view.frame.height))
         mapView.delegate = self
-
+        
         mapView.showsUserLocation = true
         view.addSubview(self.mapView)
         mapView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
@@ -80,7 +80,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         self.setupLeftMenuButton()
         self.setupRightMenuButton()
         
-
+        
         let barColor = UIColor.clearColor()
         self.navigationController?.navigationBar.barTintColor = barColor
         self.navigationController?.navigationBar.backgroundColor = barColor
@@ -95,7 +95,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-UltraLight", size: 30)
         button.setTitle("L I V V", forState: UIControlState.Normal)
         button.setTitleColor(UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0), forState: UIControlState.Normal)
-
+        
         button.addTarget(self, action: Selector("clickOnButton:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.navigationItem.titleView = button
         
@@ -168,13 +168,14 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         if tableView != nil {
             
             self.tableView.removeFromSuperview()
+            self.mapView.showsUserLocation = true
             
         }
         currentLocation()
         setUpVotes()
         
     }
-
+    
     
     func setUpVotes(){
         
@@ -306,8 +307,10 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                         var scale: Double = Double((self.mapView.bounds.size.width / CGFloat(self.mapView.visibleMapRect.size.width)))
                         let annotations: NSArray = self.coordinateQuadTree.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale: scale)
                         //self.requestUpdate()
-                        self.updateMapViewAnnotationsWithAnnotations(annotations)
                         
+                        if annotations.count > 0 {
+                            self.updateMapViewAnnotationsWithAnnotations(annotations)
+                        }
                     }
                 }
             }
@@ -320,7 +323,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         if intialLocationLoad == false{
             
             currentLocation()
-
+            
             intialLocationLoad = true
         }
     }
@@ -356,7 +359,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
             setUpVotes()
         }
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         println("Center will appear")
@@ -405,7 +408,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     
     
     func setupRightMenuAgain(){
-
+        
         var button1: UIButton! = UIButton(frame: CGRectMake(0,0,30,30))
         button1.setImage(UIImage(named: "accept.png"), forState: .Normal)
         button1.addTarget(self, action: "leftDrawerButtonPress:", forControlEvents: .TouchUpInside)
@@ -433,7 +436,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
         if annotation is MKUserLocation {
-
+            
             let reuseId = "me"
             var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
             if pinView == nil {
@@ -469,7 +472,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         } else {
             annotationView.isParty = false
         }
-
+        
         return annotationView
         
     }
@@ -479,6 +482,8 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            
+            
             
             var before: NSMutableSet = NSMutableSet(array: self.mapView.annotations)
             before.removeObject(self.mapView.userLocation)
@@ -501,10 +506,11 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                 self.mapView.removeAnnotations(toRemove.allObjects)
             }
             
+            
         }
         
     }
-
+    
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
@@ -537,7 +543,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
                         
                     }
                     self.accuracy = self.lastLocation.horizontalAccuracy
-
+                    
                     self.address = "\(subThoroughfare) \(p.thoroughfare)^.#/\(p.subLocality)^.#/\(p.subAdministrativeArea)^.#/\(p.postalCode)^.#/\(p.country)"
                     var methodFinished: NSDate = NSDate()
                     var executionTime: NSTimeInterval = methodFinished.timeIntervalSinceDate(methodStart)
@@ -663,7 +669,7 @@ class MapViewController: ViewController, MKMapViewDelegate, CLLocationManagerDel
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         mapView.mapType = MKMapType.Standard
-
+        
     }
     
 }

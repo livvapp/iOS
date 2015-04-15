@@ -50,7 +50,7 @@ class TagButtonViewCell: UITableViewCell {
         button.sizeToFit()
         button.layer.cornerRadius = 2
         var titleWidth: CGFloat! = (button.frame.size.width as CGFloat!) + 10
-        button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)
+        button.frame = CGRect(x: 10, y: 4, width: titleWidth, height: 31)
 
         contentView.addSubview(button)
         
@@ -62,7 +62,7 @@ class TagButtonViewCell: UITableViewCell {
         count.setTitleColor(UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0), forState: .Normal)
         count.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Right
         count.titleLabel?.textAlignment = .Right
-        count.autoresizingMask = .FlexibleWidth
+        count.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         contentView.addSubview(count)
     }
     

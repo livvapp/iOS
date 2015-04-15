@@ -36,7 +36,7 @@ class PrivateButtonTableViewCell: TagButtonViewCell {
         button.sizeToFit()
         button.layer.cornerRadius = 2
         var titleWidth: CGFloat! = (button.frame.size.width as CGFloat!) + 10
-        button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)
+        button.frame = CGRect(x: 10, y: 4, width: titleWidth, height: 31)
         contentView.addSubview(button)
         
         count.frame = CGRect(x: self.frame.width - 40, y: 0, width: 30, height: contentView.frame.height)

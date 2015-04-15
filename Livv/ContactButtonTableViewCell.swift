@@ -50,7 +50,7 @@ class ContactButtonTableViewCell: TagButtonViewCell {
         button.layer.cornerRadius = 2
         var titleWidth: CGFloat! = (button.frame.size.width as CGFloat!) + 10
         //var titleHeight: CGFloat! = (button.titleLabel?.frame.size.height as CGFloat!) + 5
-        button.frame = CGRect(x: 10, y: 10, width: titleWidth, height: 31)
+        button.frame = CGRect(x: 10, y: 4, width: titleWidth, height: 31)
         //button.autoresizingMask = .FlexibleWidth
         contentView.addSubview(button)
         

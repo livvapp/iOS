@@ -82,7 +82,7 @@ class SettingsViewController: ViewController, UITableViewDelegate, UITableViewDa
         
         self.tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        self.tableView.scrollEnabled = false
+        //self.tableView.scrollEnabled = false
         //self.tableView.rowHeight = 40
         
         let URL = NSURL(string:"\(globalURL)/api/users/me/score")

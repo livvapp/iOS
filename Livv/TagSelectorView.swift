@@ -109,10 +109,9 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         //points.backgroundColor = UIColor.redColor()
         //points.layer.cornerRadius = 2
         points.clipsToBounds = true
-        points.font = UIFont(name: "HelveticaNeue-Light", size: 22)
+        points.font = UIFont(name: "HelveticaNeue-Medium", size: 22)
         self.addSubview(points)
-        
-        
+
         done = UIButton()
         updateDoneTag()
         done.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 22)
@@ -126,10 +125,10 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         
         //addTags()
         
-        tableView = UITableView(frame: CGRectMake(0, 31, self.frame.size.width, self.frame.size.height-31-50))
+        tableView = UITableView(frame: CGRectMake(0, 35, self.frame.size.width, self.frame.size.height-35-50))
         tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor.clearColor()
-        tableView.rowHeight = 38
+        tableView.rowHeight = 39
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.delegate = self
@@ -279,7 +278,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
         
     }
     func textFieldDidBeginEditing(textField: UITextField) {
-        //explanation.hidden = true
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -576,6 +575,7 @@ class TagSelectorView: UIView, UITextFieldDelegate, UITableViewDelegate, UITable
     
     func singleTap(sender: UITapGestureRecognizer!){
         
+        println("tap")
         addTag.resignFirstResponder()
         
     }
