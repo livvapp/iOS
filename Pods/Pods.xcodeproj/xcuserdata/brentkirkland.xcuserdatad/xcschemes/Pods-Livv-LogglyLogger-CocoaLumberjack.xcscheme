@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA631C9F223D0D372D7CF4EC"
+               BlueprintIdentifier = "69E19FF2A4ABB5CA896F9682"
                BuildableName = "LogglyLogger_CocoaLumberjack.framework"
                BlueprintName = "Pods-Livv-LogglyLogger-CocoaLumberjack"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EA631C9F223D0D372D7CF4EC"
+            BlueprintIdentifier = "69E19FF2A4ABB5CA896F9682"
             BuildableName = "LogglyLogger_CocoaLumberjack.framework"
             BlueprintName = "Pods-Livv-LogglyLogger-CocoaLumberjack"
             ReferencedContainer = "container:Pods.xcodeproj">
