@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DDLog.addLogger(loggly)
         //DDLog.addLogger(CrashlyticsLogger())
 
-        DDLogVerbose("App did launch", level: ddLogLevel, asynchronous: true)
+        DDLogVerbose("App did launching with options", level: ddLogLevel, asynchronous: true)
         
         Fabric.with([Crashlytics()])
         
