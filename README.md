@@ -1,8 +1,11 @@
-# Livv
+# Livv Checkin In Update Branch
 
-TODO:
-* TEST
-* Location Query
-* Lock Drawer 
-* Phone Numbers
-* 
+This branch is created burely for this new feature.
+
+This new feature will icnlude usability updates. 
+
+Autoselect
+Previous Tags
+Easier on the eyes
+Coloring
+
