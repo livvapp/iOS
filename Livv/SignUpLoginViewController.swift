@@ -1166,7 +1166,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 self.phoneTextField.becomeFirstResponder()
                 self.openWindow(self.phoneandpasswordbox)
                 NSUserDefaults.standardUserDefaults().setObject("2", forKey: "step")
-                
+
             }else {
                 
                 var error: String = "Error while verifying email code! request: \(request), response: \(response), data: \(data), error: \(error)"
