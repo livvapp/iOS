@@ -644,6 +644,8 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
 
     func verifyPhoneLogin(sender: UIButton!){
         
+        sender.enabled = false
+        
         if count(loginVerifyField.text) != 7 {
             
             error.text = "Please enter a 6 digit code"
@@ -682,6 +684,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     realm.commitWriteTransaction()
                     
                     self.getUsername()
+                    sender.enabled = true
                     
                 }else {
                     
@@ -691,6 +694,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     
                     self.error.hidden = false
                     self.error.text = "Oops! Wrong code!"
+                    sender.enabled = true
                 }
             }
         }
@@ -736,14 +740,18 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func submitLogin(sender: UIButton!){
+        
+        sender.enabled = false
 
         if (phoneTextFieldLogin.text == ""){
             error.hidden = false
             error.text = "Please enter a valid phone number"
+            sender.enabled = true
         }
         if (count(phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 1), end: advance(phoneTextFieldLogin.text.startIndex, 4))) + phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 6), end: advance(phoneTextFieldLogin.text.startIndex, 9))) + phoneTextFieldLogin.text.substringWithRange(Range<String.Index>(start: advance(phoneTextFieldLogin.text.startIndex, 10), end: advance(phoneTextFieldLogin.text.endIndex, 0)))) != 10){
             error.hidden = false
             error.text = "Please enter a ten digit phone number"
+            sender.enabled = true
             
         } else {
             
@@ -771,6 +779,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     
                     self.openWindow(self.loginverifybox)
                     NSUserDefaults.standardUserDefaults().setObject("7", forKey: "step")
+                    sender.enabled = true
                     
                 }else {
                     
@@ -780,6 +789,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     
                     self.error.hidden = false
                     self.error.text = "Oops! This phone doesn't exist."
+                    sender.enabled = true
                 }
                 
             }
@@ -792,7 +802,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     
     func submitPhoneAndPassword(sender: UIButton!){
         
-        
+        sender.enabled = false
         
         if (count((phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 1), end: advance(phoneTextField.text.startIndex, 4))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 6), end: advance(phoneTextField.text.startIndex, 9))) + phoneTextField.text.substringWithRange(Range<String.Index>(start: advance(phoneTextField.text.startIndex, 10), end: advance(phoneTextField.text.endIndex, 0))))) == 10){
             
@@ -842,6 +852,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     self.phoneVerifyField.becomeFirstResponder()
                     self.openWindow(self.phonecodebox)
                     NSUserDefaults.standardUserDefaults().setObject("3", forKey: "step")
+                    sender.enabled = true
                     
                 }else {
                     
@@ -851,6 +862,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                     
                     self.error.hidden = false
                     self.error.text = "Oops! Something went wrong!"
+                    sender.enabled = true
                 }
                 
             }
@@ -858,6 +870,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
         } else {
             self.error.hidden = false
             self.error.text = "Oops! Enter a correct phone number."
+            sender.enabled = true
             
         }
         
@@ -1082,6 +1095,8 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     
     func verifyPhoneCode(sender: UIButton!) {
         
+        sender.enabled = false
+        
         error.hidden = true
         error.text = ""
         
@@ -1110,6 +1125,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 realm.beginWriteTransaction()
                 (user[0] as! User).complete = true
                 realm.commitWriteTransaction()
+                sender.enabled = true
                 NSUserDefaults.standardUserDefaults().setObject("0", forKey: "step")
                 LoginOrDrawerController(frame: self.window.frame).root(self.window)
                 
@@ -1121,6 +1137,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 
                 self.error.hidden = false
                 self.error.text = "Woah there! Wrong code!"
+                sender.enabled = true
                 
             }
             
@@ -1133,6 +1150,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
     
     func verifyemailcode(sender: UIButton!){
         
+        sender.enabled = false
 
         error.hidden = true
         error.text = ""
@@ -1166,7 +1184,12 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 self.phoneTextField.becomeFirstResponder()
                 self.openWindow(self.phoneandpasswordbox)
                 NSUserDefaults.standardUserDefaults().setObject("2", forKey: "step")
+<<<<<<< HEAD
 
+=======
+                sender.enabled = true
+                
+>>>>>>> 091550e8416e3cd53609cb8f02bdb7ab4ce848b8
             }else {
                 
                 var error: String = "Error while verifying email code! request: \(request), response: \(response), data: \(data), error: \(error)"
@@ -1175,6 +1198,7 @@ class SignUpLoginViewController: UIViewController, UITextFieldDelegate {
                 
                 self.error.hidden = false
                 self.error.text = "Woah there! Wrong code!"
+                sender.enabled = true
                 
             }
             
